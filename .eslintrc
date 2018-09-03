@@ -21,10 +21,6 @@
         "no-extra-boolean-cast": "off",
         "no-direct-mutation-state": "off",
         "no-console": "off",
-        "indent": [
-            "error",
-            4
-        ],
         "quotes": [
             "error",
             "single"

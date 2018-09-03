@@ -1,16 +1,18 @@
 body {
-    background-color: #FFF;
-    font-family: $font-family;
+  background-color: #fff;
+  //   font-family: $font-family;
+  font-family: 'Roboto', sans-serif;
+  color: #272727;
 }
 
 a {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .text-react-blue {
-    color: $react-blue;
+  color: $react-blue;
 }
 
 .bg-react-black {
-    background-color: $react-black;
+  background-color: $react-black;
 }

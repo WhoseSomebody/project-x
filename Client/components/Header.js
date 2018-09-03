@@ -1,13 +1,39 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-const Header = () => (
-    <nav className="header navbar navbar-expand-sm navbar-dark bg-react-black">
-        <div className="container">
-            <div className="navbar-brand">
-                <i className="fa fa-pencil-square-o fa-4x align-middle mr-2 text-react-blue"></i>
-                <span className="align-middle text-react-blue">NoteWorx</span>
-            </div></div>
-    </nav>
-);
+const Header = props => {
+  console.log(props);
+  return (
+    <div className="container">
+      <ul className="list-inline text-centered header">
+        <li
+          className={`list-inline-item ${
+            props.match.path === '/' ? 'active' : ''
+          }`}
+        >
+          <Link to="/">Главная</Link>
+        </li>
+        <li
+          className={`list-inline-item ${
+            props.match.path === '/participants' ? 'active' : ''
+          }`}
+        >
+          <Link to="/participants">Участники</Link>
+        </li>
+        <li
+          className={`list-inline-item ${
+            props.match.path === '/techniques' ? 'active' : ''
+          }`}
+        >
+          <Link to="/techniques">Техника выполнения</Link>
+        </li>
+      </ul>
+    </div>
+  );
+};
 
+Header.propTypes = {
+  match: PropTypes.object
+};
 export default Header;

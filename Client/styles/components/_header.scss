@@ -1,3 +1,28 @@
 .header {
-    min-height: 100px;
+  min-height: 100px;
+  li {
+      margin: 25px 0 10px 0;;
+    a {
+      padding: 10px 20px;
+      font-family: 'Helvetica Neue';
+      font-size: 20px;
+      line-height: 24px;
+      color: #272727;
+      text-decoration: none;
+      transition: all 50ms linear;
+      font-family: 'Oswald', sans-serif;
+      &:hover {
+        color: #ff5555;
+      }
+    }
+    &.active {
+      border-bottom: 3px solid #ff5555;
+      a {
+        color: #ff5555;
+      }
+    }
+  }
+}
+.text-centered {
+  text-align: center;
 }

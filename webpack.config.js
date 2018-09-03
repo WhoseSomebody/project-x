@@ -34,7 +34,7 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.svg$/,
+        test: /\.(png|jpg|svg)$/,
         loader: 'url-loader',
         exclude: /node_modules/
       }
@@ -52,6 +52,7 @@ module.exports = {
   devServer: {
     contentBase: path.resolve(__dirname, 'public'),
     compress: true,
+    host: '0.0.0.0',
     port: 9000
   }
 };

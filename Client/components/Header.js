@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom';
 const Header = props => {
   console.log(props);
   return (
-    <div className="container">
-      <ul className="list-inline text-centered header">
+    <div className="container header">
+      <ul className="list-inline text-centered absoluted">
         <li
           className={`list-inline-item ${
             props.match.path === '/' ? 'active' : ''

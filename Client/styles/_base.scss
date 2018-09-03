@@ -1,8 +1,17 @@
 body {
-  background-color: #fff;
   //   font-family: $font-family;
   font-family: 'Roboto', sans-serif;
   color: #272727;
+  margin: 0;
+  padding: 0;
+  background-color: #e9eaed;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Oswald', sans-serif;
 }
 
 a {
@@ -15,4 +24,26 @@ a {
 
 .bg-react-black {
   background-color: $react-black;
+}
+
+.button {
+  display: block;
+  font-family: 'Oswald', sans-serif;
+  border-radius: 2px;
+  height: 63px;
+  width: 277px;
+  font-size: 24px;
+  line-height: 63px;
+  text-align: center;
+  transition: all 200ms linear;
+  &.button-main {
+    background: linear-gradient(154.42deg, #ff7a38 0%, #d62424 100%);
+    color: #ffffff;
+  }
+  &:hover {
+    text-decoration: none;
+    &.button-main {
+      box-shadow: 0 2px 30px 0 rgba(255, 85, 85, 0.53);
+    }
+  }
 }

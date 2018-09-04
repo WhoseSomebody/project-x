@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import ModalVideo from 'react-modal-video';
 import Parallax from 'parallax-js';
+import FeedbackForm from '../FeedbackForm';
 
 export default class MainPage extends Component {
   constructor() {
@@ -60,19 +60,76 @@ export default class MainPage extends Component {
             </div>
           </div>
           <div className="block-2 row">
-            <div className="col col-md-3 col-12">
+            <div className="col col-md-4 col-12">
               <div className="big-x" />
             </div>
-            <div className="col col-md-9 col-12">
-              <div className="paragraph-reason">
-                Главная цель проекта - <span className="bold">дать возможность</span> сотням талантливых и
-                сильных парней и девушек заявить о себе и получить возможность
-                <span className="bold">стать частью команды RD!</span>
+            <div className="reason col col-md-8 col-12">
+              <div className="paragraph">
+                Главная цель проекта -{' '}
+                <span className="bold">дать возможность</span> сотням
+                талантливых и сильных парней и девушек заявить о себе и получить
+                возможность
+                <span className="bold"> стать частью команды RD!</span>
               </div>
             </div>
           </div>
-          <div className="block-3 row" />
-          <div className="block-4 row" />
+          <div className="block-3 row">
+            <div className="background" />
+            <div className="task row">
+              <div className="col col-md-6 col-lg-5 col-12 image-wrapper">
+                <div className="illustration youtube" />
+              </div>
+              <div className="col col-md-6 offset-lg-2 col-lg-5 col-12">
+                <h4 className="task-name">Запиши видео</h4>
+                <p>
+                  Посмотри <a href="#"> правила</a>,{' '}
+                  <a href="#"> технику выполнения</a> и запиши видео своих
+                  результатов, и отправь нам используя форму с низу.
+                </p>
+                <p>
+                  Вы должны выполнить:
+                  <br />- 8 выходов силой на две руки <br />- 8 подтягиваний с
+                  весом отягощения 24 кг
+                  <br />- 16 отжиманий на брусьях с весом отягощения 32 кг
+                </p>
+              </div>
+            </div>
+            <div className="task row">
+              <div className="col col-md-6 col-lg-5 col-12">
+                <h4 className="task-name">Получи приглашение на батл</h4>
+                <p>
+                  Члены Жюри будут следить за тем, насколько "чисто" выполнены
+                  упражнения участниками и отберут лучших 100 спортсменов для
+                  участия в Чемпионате!
+                </p>
+              </div>
+              <div className="col col-md-6 offset-lg-2 col-lg-5 col-12 image-wrapper">
+                <div className="illustration mail" />
+              </div>
+            </div>
+            <div className="task row">
+              <div className="col col-md-6 col-lg-5 col-12 image-wrapper">
+                <div className="illustration trophy" />
+              </div>
+              <div className="col col-md-6 offset-lg-2 col-lg-5 col-12">
+                <h4 className="task-name">Попади на чемпионат</h4>
+                <p>
+                  В конце августа в Москве состоится первый Чемпионат Road to
+                  the Dream, куда будут приглашены сильнейшие участники,
+                  прошедшие отбор на сайте!
+                  <br />В рамках Чемпионата будет:
+                  <br />- Шоу-программа
+                  <br />- Конкурсы
+                  <br />- Соревнования по экстремальным видам спорта
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="block-4 row">
+            <div className="col col-12 form-wrapper">
+              <FeedbackForm />
+            </div>
+          </div>
 
           <ModalVideo
             channel="youtube"

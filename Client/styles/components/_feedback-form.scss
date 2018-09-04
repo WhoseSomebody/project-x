@@ -1,0 +1,50 @@
+.feedback-form {
+  .title {
+    font-size: 24px;
+    line-height: 29px;
+    font-family: 'Oswald', sans-serif;
+    text-align: right;
+  }
+  .subtitle {
+    font-size: 14px;
+    line-height: 17px;
+    text-align: right;
+  }
+  .input-pair {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 40px 0;
+  }
+  input {
+    height: 50px;
+    width: 100%;
+    border: 2px solid #272727;
+    border-radius: 36px;
+    background: transparent;
+    padding: 5px 25px;
+    font-size: 24px;
+    line-height: 29px;
+    &:focus {
+      outline: none;
+      border-color: #4a29bf;
+    }
+  }
+  .imageWrapper {
+    height: 410px;
+    width: 302px;
+    max-width: 100%;
+    border: 2px solid #272727;
+    border-radius: 2px;
+    margin: 40px auto;
+    background-image: url('../assets/noun_Photo_1906155@2x.png');
+    background-position: center;
+    background-size: 40%;
+    background-repeat: no-repeat;
+  }
+  .button.block {
+    max-width: 302px;
+    margin: auto;
+    margin-bottom: 80px;
+  }
+}

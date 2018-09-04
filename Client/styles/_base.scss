@@ -5,6 +5,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #e9eaed;
+  overflow-x: hidden;
 }
 h1,
 h2,
@@ -40,8 +41,26 @@ a {
     background: linear-gradient(154.42deg, #ff7a38 0%, #d62424 100%);
     color: #ffffff;
   }
+  &.button-inverse {
+    border-radius: 2px;
+    color: #ed493b;
+    font-size: 24px;
+    line-height: 48px;
+    text-align: center;
+    border: 5px solid transparent;
+    border-image: linear-gradient(154.42deg, #ff7a38 0%, #d62424 100%);
+    border-image-slice: 1;
+    &:hover {
+    }
+  }
+  &.block {
+    width: 100%;
+  }
   &:hover {
     text-decoration: none;
+    &.button-inverse {
+      box-shadow: 0 2px 20px 0 rgba(255, 85, 85, 0.28);
+    }
     &.button-main {
       box-shadow: 0 2px 30px 0 rgba(255, 85, 85, 0.53);
     }

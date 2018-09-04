@@ -48,15 +48,20 @@
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "express": "^4.16.2",
+    "image-compressor": "^1.2.0",
     "moment": "^2.19.3",
     "mongodb": "^2.2.33",
     "morgan": "^1.9.0",
     "parallax-js": "^3.1.0",
+    "rc-slider": "^8.6.1",
     "react": "^16.2.0",
+    "react-avatar-editor": "^11.0.4",
     "react-dom": "^16.2.0",
-    "react-modal": "^3.1.7",
+    "react-dropzone": "^5.0.1",
+    "react-modal": "^3.5.1",
     "react-modal-video": "^1.2.1",
     "react-router-dom": "^4.3.1",
-    "uuid": "^3.1.0"
+    "react-webcam": "^1.0.1",
+    "uuid": "^3.3.2"
   }
 }

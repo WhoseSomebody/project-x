@@ -100,8 +100,117 @@
   }
 }
 
-@media only screen and (max-width: 375px) {
+.block-2 {
+  margin-top: 100px;
+  .reason {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    .paragraph {
+      margin: auto;
+      border-left: 3px solid #cd2119;
+      padding-left: 30px;
+      font-size: 24px;
+      line-height: 29px;
+      .bold {
+        color: #4a29bf;
+        font-weight: bold;
+      }
+    }
+  }
+  .big-x {
+    height: 191px;
+    width: 225px;
+    background-image: url('../assets/X@2x.png');
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+  }
+}
+
+.block-3 {
+  color: #fff;
+  padding: 50px 0;
+  .background {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    background-color: #272727;
+    height: 1600px;
+  }
+  .task {
+    margin: 100px 0;
+    .task-name {
+      font-size: 36px;
+      line-height: 44px;
+      padding-bottom: 20px;
+    }
+    p {
+      font-size: 20px;
+      line-height: 30px;
+      font-weight: 100;
+      a {
+        color: #815df0;
+      }
+    }
+    .image-wrapper {
+      display: flex;
+      align-items: center;
+      flex: 1;
+      .illustration {
+        margin: auto;
+        background-position: center;
+        background-size: contain;
+        background-repeat: no-repeat;
+        &.youtube {
+          background-image: url('../assets/rules@2x.png');
+          height: 270px;
+          width: 350px;
+        }
+        &.mail {
+          background-image: url('../assets/rules copy@2x.png');
+          height: 270px;
+          width: 350px;
+        }
+        &.trophy {
+          background-image: url('../assets/rules copy 2@2x.png');
+          height: 270px;
+          width: 350px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 992px) {
+  .block-3 {
+    .task {
+      margin: 80px 0;
+    }
+  }
+}
+
+@media (max-width: 692px) {
+  .block-3 {
+    .task {
+      margin: 50px 0;
+    }
+    .background {
+      height: 1900px;
+    }
+  }
+}
+
+@media (max-width: 375px) {
   .parallax > * {
     background-size: 150%;
   }
+  .block-3 {
+    .task {
+      margin: 40px 0;
+    }
+  }
 }
+
+

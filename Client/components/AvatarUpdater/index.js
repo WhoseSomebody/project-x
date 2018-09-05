@@ -2,15 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 import 'image-compressor';
-import Webcam from 'react-webcam';
 import AvatarEditor from 'react-avatar-editor';
 import Slider from 'rc-slider';
 import uuid from 'uuid';
 import Dropzone from 'react-dropzone';
 import ReactModal from 'react-modal';
-
-import './customModalStyles.css';
-
 const compressorSettings = {
   toWidth: 500,
   mimeType: 'image/jpeg',
@@ -28,7 +24,9 @@ class AvatarUpdater extends React.Component {
       image: {
         scale: 1
       },
-      isCameraActivated: false
+      isCameraActivated: false,
+      isImgModalOpen: false,
+      rotate: 0
     };
   }
 
@@ -75,16 +73,41 @@ class AvatarUpdater extends React.Component {
         <div
           className="imageWrapper"
           role="presentation"
-          onClick={() => this.toggleImageModal(true)}
+          // onClick={() => this.toggleImageModal(true)}
         >
-          <img alt="" size="8rem" src={this.props.initalImage} />
-          <div className="imageOverlay" />
-          <div>Update avatar</div>
+          <Dropzone
+            accept="image/*"
+            className="dropzoneWrapper"
+            multiple={false}
+            onDrop={accepted => {
+              if (accepted[0]) {
+                this.toggleImageModal(true);
+                this.setState({ processingImage: true }, () => {
+                  imageCompressor.run(
+                    accepted[0].preview,
+                    compressorSettings,
+                    img => {
+                      this.setState({
+                        processingImage: false,
+                        image: {
+                          src: img
+                        }
+                      });
+                    }
+                  );
+                });
+              }
+            }}
+            activeClassName="active"
+          >
+            {/* <div className="dropzoneNote">+ Upload Photo</div> */}
+          </Dropzone>
         </div>
         <ReactModal
           className="Modal"
           overlayClassName="Overlay"
-          isOpen={true}
+          isOpen={this.state.isImgModalOpen}
+          onRequestClose={() => this.toggleImageModal(false)}
           ariaHideApp={false}
           shouldCloseOnOverlayClick
           shouldCloseOnEsc
@@ -94,94 +117,27 @@ class AvatarUpdater extends React.Component {
           }}
         >
           <div className="cardContentWrapper">
-            <div className="col col-md-6 col-12">
-              {!this.state.isCameraActivated && (
-                <div
-                  className={'webcamWrapper'}
-                  role="presentation"
-                  onClick={() => this.setState({ isCameraActivated: true })}
-                >
-                  <span>Camera</span>
-                </div>
-              )}
-              {this.state.isCameraActivated && (
-                <div
-                  className={`webcamWrapper ${
-                    this.state.isCameraActivated ? 'noPointer' : ''
-                  }`}
-                >
-                  <div className="textTips">
-                    Please make sure to allow camera access
-                  </div>
-                  <Webcam
-                    className="webcam"
-                    audio={false}
-                    // width={00}
-                    // height={500}
-                    ref={webcam => {
-                      this.webcam = webcam;
-                    }}
-                    screenshotFormat="image/jpeg"
-                  />
-                  <a
-                    href="#"
-                    className="button button-inverse block"
-                    onClick={() => this.toggleImageModal(false)}
-                  >
-                    Сделать снимок
-                  </a>
-                </div>
-              )}
-
-              <Dropzone
-                accept="image/*"
-                className="dropzoneWrapper"
-                multiple={false}
-                onDrop={accepted => {
-                  if (accepted[0]) {
-                    this.setState({ processingImage: true }, () => {
-                      imageCompressor.run(
-                        accepted[0].preview,
-                        compressorSettings,
-                        img => {
-                          this.setState({
-                            processingImage: false,
-                            image: {
-                              src: img
-                            }
-                          });
-                        }
-                      );
-                    });
-                  }
-                }}
-                activeClassName="active"
-              >
-                <div className="dropzoneNote">+ Upload Photo</div>
-              </Dropzone>
-            </div>
-            <div
-              className="col col-md-6 col-12"
-              style={{
-                opacity: this.state.image.src ? 1 : 0,
-                zIndex: this.state.image.src ? 0 : -1,
-                position: this.state.image.src ? '' : 'absolute',
-                transition: 'opacity 0.3s linear'
-              }}
-            >
+            <div className="col col-12">
               <AvatarEditor
                 ref={editor => {
                   this.editor = editor;
                 }}
                 image={this.state.image.src}
-                width={window.innerWidth * 0.14}
-                height={window.innerWidth * 0.14}
-                borderRadius={300}
-                border={50}
+                width={300}
+                height={400}
+                // border={50}
                 color={[255, 255, 255, 0.95]} // RGBA
                 scale={this.state.image.scale}
-                rotate={0}
+                rotate={this.state.rotate}
               />
+              <a
+                onClick={() =>
+                  this.setState({ rotate: this.state.rotate + 90 })
+                }
+                className="rotate-button"
+              >
+                ↻
+              </a>
               <div className="slider">
                 <div className="textTips">
                   <span>Small</span>
@@ -199,14 +155,12 @@ class AvatarUpdater extends React.Component {
               </div>
               <div className="buttons">
                 <a
-                  href="#"
                   className="button button-inverse block"
                   onClick={() => this.toggleImageModal(false)}
                 >
                   Отмена
                 </a>
                 <a
-                  href="#"
                   className="button button-inverse block"
                   onClick={() => this.returnProccessedImage()}
                 >

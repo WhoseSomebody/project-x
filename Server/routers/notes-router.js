@@ -5,140 +5,144 @@ const express = require('express');
 
 // app references
 const NoteManager = require('../Services/NoteManager');
+const EmailManager = require('../Services/EmailManager');
 
 // initialization
 const noteManager = new NoteManager();
+const emailManager = new EmailManager();
 
 // build router
 
 const notesRouter = () => {
-    const router = express.Router();
+  const router = express.Router();
 
-    router
-        .delete('/notes/:id', (request, response) => {
+  router
+    .get('/send-email', (req, res) => {
+      console.log(req, res);
+      emailManager.sendEmail();
+      res
+        .status(200)
+        .send();
+    })
+    .delete('/notes/:id', (request, response) => {
+      const { id } = request.params;
 
-            const { id } = request.params;
+      if (!id) {
+        response.status(400).send('Title is required');
+      } else {
+        noteManager
+          .removeNote(id)
+          .then(() => response.status(200).send('Note deleted'))
+          .catch(error => {
+            console.log(error.message);
+            response.status(500).send();
+          });
+      }
+    })
+    .get('/notes/:id', (request, response) => {
+      const { id } = request.params;
 
-            if (!id) {
-                response.status(400).send('Title is required');
-            } else {
-                noteManager
-                    .removeNote(id)
-                    .then(() => response.status(200).send('Note deleted'))
-                    .catch(error => {
-                        console.log(error.message);
-                        response.status(500).send();
-                    });
-            }
-        })
-        .get('/notes/:id', (request, response) => {
+      if (!id) {
+        response.status(400).send('Id is required');
+      } else {
+        noteManager
+          .findNoteById(id)
+          .then(note => response.json(note))
+          .catch(error => {
+            console.log(error.message);
+            response.status(500).send();
+          });
+      }
+    })
+    .get('/notes', (request, response) => {
+      const { title, tag } = request.query;
 
-            const { id } = request.params;
+      if (title) {
+        noteManager
+          .findNotesByTitle(title)
+          .then(notes => response.json(notes))
+          .catch(error => {
+            console.log(error);
+            response.status(500).send();
+          });
+      } else if (tag) {
+        noteManager
+          .findNotesByTag(tag)
+          .then(notes => response.json(notes))
+          .catch(error => {
+            console.log(error);
+            response.status(500).send();
+          });
+      } else {
+        noteManager
+          .listNotes()
+          .then(notes => response.json(notes))
+          .catch(error => {
+            console.log(error);
+            response.status(500).send();
+          });
+      }
+    })
+    .post('/notes', (request, response) => {
+      console.log(request.body);
+      const { title, content, tags } = request.body;
 
-            if (!id) {
-                response.status(400).send('Id is required');
-            } else {
-                noteManager
-                    .findNoteById(id)
-                    .then(note => response.json(note))
-                    .catch(error => {
-                        console.log(error.message);
-                        response.status(500).send();
-                    });
-            }
-        })
-        .get('/notes', (request, response) => {
+      if (!title) {
+        response.status(400).send('Title is required');
+      } else if (!content) {
+        response.status(400).send('Content is required');
+      } else {
+        noteManager
+          .addNote(title, content, tags)
+          .then(id => response.status(201).send({ id: id }))
+          .catch(error => {
+            console.log(error.message);
+            response.status(500).send(error.message);
+          });
+      }
+    })
+    .put('/notes', (request, response) => {
+      const { id, title, content, tags } = request.body.note;
 
-            const { title, tag } = request.query;
+      if (!id) {
+        response.status(400).send('Id is required');
+      } else if (!title) {
+        response.status(400).send('Title is required');
+      } else if (!content) {
+        response.status(400).send('Content is required');
+      } else {
+        noteManager
+          .updateNote(id, title, content, tags)
+          .then(() => response.status(200).send())
+          .catch(error => {
+            console.log(error.message);
+            response.status(500).send(error.message);
+          });
+      }
+    })
+    .patch('/notes/:id', (request, response) => {
+      // not an entirely correct use of patch but convenient
+      // in terms of providing the 'tag' functionality
 
-            if (title) {
-                noteManager
-                    .findNotesByTitle(title)
-                    .then(notes => response.json(notes))
-                    .catch(error => {                    
-                        console.log(error);
-                        response.status(500).send();
-                    });
-            } else if (tag) {
-                noteManager
-                    .findNotesByTag(tag)
-                    .then(notes => response.json(notes))
-                    .catch(error => {                    
-                        console.log(error);
-                        response.status(500).send();
-                    });
-            } else {
-                noteManager
-                    .listNotes()
-                    .then(notes => response.json(notes))
-                    .catch(error => {                    
-                        console.log(error);
-                        response.status(500).send();
-                    });
-            }
-        })
-        .post('/notes', (request, response) => {
-            console.log(request.body);
-            const { title, content, tags } = request.body;
+      const { id } = request.params;
+      const { tags } = request.body;
 
-            if (!title) {
-                response.status(400).send('Title is required');
-            } else if (!content) {
-                response.status(400).send('Content is required');
-            } else {
-                noteManager
-                    .addNote(title, content, tags)
-                    .then(id => response.status(201).send({ id: id }))
-                    .catch(error => {
-                        console.log(error.message);
-                        response.status(500).send(error.message);
-                    });
-            }
-        })
-        .put('/notes', (request, response) => {
+      if (!id) {
+        response.status(400).send('Id is required');
+      } else if (!tags) {
+        response.status(400).send('Tags is required');
+      } else {
+        noteManager
+          .tagNote(id, tags)
+          .then(() => response.status(200).send('Tagged note'))
+          .catch(error => {
+            console.log(error.message);
+            response.status(500).send();
+          });
+      }
+    });
 
-            const { id, title, content, tags } = request.body.note;
-            
-            if (!id) {
-                response.status(400).send('Id is required');
-            } else if (!title) {
-                response.status(400).send('Title is required');
-            } else if (!content) {
-                response.status(400).send('Content is required');
-            } else {
-                noteManager
-                    .updateNote(id, title, content, tags)
-                    .then(() => response.status(200).send())
-                    .catch(error => {
-                        console.log(error.message);
-                        response.status(500).send(error.message);
-                    });
-            }
-        })
-        .patch('/notes/:id', (request, response) => {
-
-            // not an entirely correct use of patch but convenient 
-            // in terms of providing the 'tag' functionality
-
-            const { id } = request.params;
-            const { tags } = request.body;
-
-            if (!id) {
-                response.status(400).send('Id is required');
-            } else if (!tags) {
-                response.status(400).send('Tags is required');
-            } else {
-                noteManager
-                    .tagNote(id, tags)
-                    .then(() => response.status(200).send('Tagged note'))
-                    .catch(error => {
-                        console.log(error.message);
-                        response.status(500).send();
-                    });
-            }
-        });
-
-    return router;
+  return router;
 };
 
 module.exports = notesRouter;

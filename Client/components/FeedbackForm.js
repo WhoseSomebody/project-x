@@ -19,6 +19,7 @@ class FeedbackForm extends Component {
       muscleUpLink: 'https://www.youtube.com/watch?v=JJ44WA_eV8E',
       pushUpLink: 'https://www.youtube.com/watch?v=JJ44WA_eV8E',
       image: null,
+      sentSuccess: sessionStorage.getItem('emailSent'),
       nameError: false,
       surnameError: false,
       ageError: false,
@@ -65,7 +66,8 @@ class FeedbackForm extends Component {
       pushUpLinkError: !RegExp(
         /(http[s]?:\/\/)?[^\s(["<,>]*\.[^\s[",><]*/g
       ).test(this.state.pushUpLink),
-      imageError: !this.state.image
+      imageError: !this.state.image,
+      acceptRulesError: !this.state.acceptRules
     };
     this.setState({ ...errors });
     let failed = false;
@@ -102,225 +104,272 @@ class FeedbackForm extends Component {
           pushUpLink,
           image
         })
-        .then(res =>
-          console.log('Sent', res).catch(err => console.log('Not sent', err))
-        );
+        .then(res => {
+          this.setState({
+            sentSuccess: true
+          });
+          sessionStorage.setItem('emailSent', true);
+        })
+        .catch(err => console.log('Not sent', err));
     }
   };
 
   render() {
-    return (
-      <div className="feedback-form">
-        <div className="row">
-          <div className="col col-lg-8 col-12">
-            <div className="row input-pair">
-              <div className="col col-lg-3 col-12">
-                <div className="title">Имя</div>
-              </div>
-              <div className="col col-lg-9 col-12">
-                <div
-                  className={`input-wrapper ${
-                    this.state.nameError ? 'errored' : ''
-                  }`}
-                >
-                  <input
-                    type="text"
-                    autoFocus
-                    onChange={e =>
-                      this.onInputChange(e, 'name', /^(?!\s*$).+/g)
-                    }
-                    value={this.state.name}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="row input-pair">
-              <div className="col col-lg-3 col-12">
-                <div className="title">Фамилия</div>
-              </div>
-              <div className="col col-lg-9 col-12">
-                <div
-                  className={`input-wrapper ${
-                    this.state.surnameError ? 'errored' : ''
-                  }`}
-                >
-                  <input
-                    type="text"
-                    onChange={e =>
-                      this.onInputChange(e, 'surname', /^(?!\s*$).+/g)
-                    }
-                    value={this.state.surname}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="row input-pair">
-              <div className="col col-lg-2 col-12">
-                <div className="title">Возраст</div>
-              </div>
-              <div className="col col-lg-2 col-12">
-                <div
-                  className={`input-wrapper ${
-                    this.state.ageError ? 'errored' : ''
-                  }`}
-                >
-                  <input
-                    type="number"
-                    onChange={e => this.onInputChange(e, 'age', /^[0-9]*$/g)}
-                    value={this.state.age}
-                  />
-                </div>
-              </div>
-              <div className="col col-lg-2 col-12">
-                <div className="title">Рост</div>
-              </div>
-              <div className="col col-lg-2 col-12">
-                <div
-                  className={`input-wrapper ${
-                    this.state.heightError ? 'errored' : ''
-                  }`}
-                >
-                  <input
-                    type="number"
-                    onChange={e => this.onInputChange(e, 'height', /^[0-9]*$/g)}
-                    value={this.state.height}
-                  />
-                </div>
-              </div>
-              <div className="col col-lg-2 col-12">
-                <div className="title">Вес</div>
-              </div>
-              <div className="col col-lg-2 col-12">
-                <div
-                  className={`input-wrapper ${
-                    this.state.weightError ? 'errored' : ''
-                  }`}
-                >
-                  <input
-                    type="number"
-                    onChange={e => this.onInputChange(e, 'weight', /^[0-9]*$/g)}
-                    value={this.state.weight}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="row input-pair">
-              <div className="col col-lg-3 col-12">
-                <div className="title">Email</div>
-              </div>
-              <div className="col col-lg-9 col-12">
-                <div
-                  className={`input-wrapper ${
-                    this.state.emailError ? 'errored' : ''
-                  }`}
-                >
-                  <input
-                    type="email"
-                    onChange={e =>
-                      this.onInputChange(
-                        e,
-                        'email',
-                        /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/g
-                      )
-                    }
-                    value={this.state.email}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="row input-pair">
-              <div className="col col-lg-3 col-12">
-                <div className="title">Подтягивания</div>
-                <div className="subtitle">(Ссылка на видео)</div>
-              </div>
-              <div className="col col-lg-9 col-12">
-                <div
-                  className={`input-wrapper ${
-                    this.state.pullUpLinkError ? 'errored' : ''
-                  }`}
-                >
-                  <input
-                    type="link"
-                    onChange={e =>
-                      this.onInputChange(
-                        e,
-                        'pullUpLink',
-                        /(http[s]?:\/\/)?[^\s(["<,>]*\.[^\s[",><]*/g
-                      )
-                    }
-                    value={this.state.pullUpLink}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="row input-pair">
-              <div className="col col-lg-3 col-12">
-                <div className="title">Выходы силой</div>
-                <div className="subtitle">(Ссылка на видео)</div>
-              </div>
-              <div className="col col-lg-9 col-12">
-                <div
-                  className={`input-wrapper ${
-                    this.state.muscleUpLinkError ? 'errored' : ''
-                  }`}
-                >
-                  <input
-                    type="link"
-                    onChange={e =>
-                      this.onInputChange(
-                        e,
-                        'muscleUpLink',
-                        /(http[s]?:\/\/)?[^\s(["<,>]*\.[^\s[",><]*/g
-                      )
-                    }
-                    value={this.state.muscleUpLink}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="row input-pair">
-              <div className="col col-lg-3 col-12">
-                <div className="title">Отжимания</div>
-                <div className="subtitle">(Ссылка на видео)</div>
-              </div>
-              <div className="col col-lg-9 col-12">
-                <div
-                  className={`input-wrapper ${
-                    this.state.pushUpLinkError ? 'errored' : ''
-                  }`}
-                >
-                  <input
-                    type="link"
-                    onChange={e =>
-                      this.onInputChange(
-                        e,
-                        'pushUpLink',
-                        /(http[s]?:\/\/)?[^\s(["<,>]*\.[^\s[",><]*/g
-                      )
-                    }
-                    value={this.state.pushUpLink}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="col col-lg-4 col-12">
-            <AvatarUpdater onImageSelect={this.receiveImage} errored={this.state.imageError} initialImage={this.state.image} />
-          </div>
+    if (this.state.sentSuccess) {
+      return (
+        <div className="alert">
+          <h2>Благодарим за участие!</h2>;
         </div>
+      );
+    } else {
+      return (
+        <div
+          className={`feedback-form ${
+            this.state.sentSuccess ? 'collapsed' : ''
+          }`}
+        >
+          <div className="row">
+            <div className="col col-lg-8 col-12">
+              <div className="row input-pair">
+                <div className="col col-lg-3 col-12">
+                  <div className="title">Имя</div>
+                </div>
+                <div className="col col-lg-9 col-12">
+                  <div
+                    className={`input-wrapper ${
+                      this.state.nameError ? 'errored' : ''
+                    }`}
+                  >
+                    <input
+                      type="text"
+                      autoFocus
+                      onChange={e =>
+                        this.onInputChange(e, 'name', /^(?!\s*$).+/g)
+                      }
+                      value={this.state.name}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="row input-pair">
+                <div className="col col-lg-3 col-12">
+                  <div className="title">Фамилия</div>
+                </div>
+                <div className="col col-lg-9 col-12">
+                  <div
+                    className={`input-wrapper ${
+                      this.state.surnameError ? 'errored' : ''
+                    }`}
+                  >
+                    <input
+                      type="text"
+                      onChange={e =>
+                        this.onInputChange(e, 'surname', /^(?!\s*$).+/g)
+                      }
+                      value={this.state.surname}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="row input-pair">
+                <div className="col col-lg-2 col-12">
+                  <div className="title">Возраст</div>
+                </div>
+                <div className="col col-lg-2 col-12">
+                  <div
+                    className={`input-wrapper ${
+                      this.state.ageError ? 'errored' : ''
+                    }`}
+                  >
+                    <input
+                      type="number"
+                      onChange={e => this.onInputChange(e, 'age', /^[0-9]*$/g)}
+                      value={this.state.age}
+                    />
+                  </div>
+                </div>
+                <div className="col col-lg-2 col-12">
+                  <div className="title">Рост</div>
+                </div>
+                <div className="col col-lg-2 col-12">
+                  <div
+                    className={`input-wrapper ${
+                      this.state.heightError ? 'errored' : ''
+                    }`}
+                  >
+                    <input
+                      type="number"
+                      onChange={e =>
+                        this.onInputChange(e, 'height', /^[0-9]*$/g)
+                      }
+                      value={this.state.height}
+                    />
+                  </div>
+                </div>
+                <div className="col col-lg-2 col-12">
+                  <div className="title">Вес</div>
+                </div>
+                <div className="col col-lg-2 col-12">
+                  <div
+                    className={`input-wrapper ${
+                      this.state.weightError ? 'errored' : ''
+                    }`}
+                  >
+                    <input
+                      type="number"
+                      onChange={e =>
+                        this.onInputChange(e, 'weight', /^[0-9]*$/g)
+                      }
+                      value={this.state.weight}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="row input-pair">
+                <div className="col col-lg-3 col-12">
+                  <div className="title">Email</div>
+                </div>
+                <div className="col col-lg-9 col-12">
+                  <div
+                    className={`input-wrapper ${
+                      this.state.emailError ? 'errored' : ''
+                    }`}
+                  >
+                    <input
+                      type="email"
+                      onChange={e =>
+                        this.onInputChange(
+                          e,
+                          'email',
+                          /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/g
+                        )
+                      }
+                      value={this.state.email}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="row input-pair">
+                <div className="col col-lg-3 col-12">
+                  <div className="title">Подтягивания</div>
+                  <div className="subtitle">(Ссылка на видео)</div>
+                </div>
+                <div className="col col-lg-9 col-12">
+                  <div
+                    className={`input-wrapper ${
+                      this.state.pullUpLinkError ? 'errored' : ''
+                    }`}
+                  >
+                    <input
+                      type="link"
+                      onChange={e =>
+                        this.onInputChange(
+                          e,
+                          'pullUpLink',
+                          /(http[s]?:\/\/)?[^\s(["<,>]*\.[^\s[",><]*/g
+                        )
+                      }
+                      value={this.state.pullUpLink}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="row input-pair">
+                <div className="col col-lg-3 col-12">
+                  <div className="title">Выходы силой</div>
+                  <div className="subtitle">(Ссылка на видео)</div>
+                </div>
+                <div className="col col-lg-9 col-12">
+                  <div
+                    className={`input-wrapper ${
+                      this.state.muscleUpLinkError ? 'errored' : ''
+                    }`}
+                  >
+                    <input
+                      type="link"
+                      onChange={e =>
+                        this.onInputChange(
+                          e,
+                          'muscleUpLink',
+                          /(http[s]?:\/\/)?[^\s(["<,>]*\.[^\s[",><]*/g
+                        )
+                      }
+                      value={this.state.muscleUpLink}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="row input-pair">
+                <div className="col col-lg-3 col-12">
+                  <div className="title">Отжимания</div>
+                  <div className="subtitle">(Ссылка на видео)</div>
+                </div>
+                <div className="col col-lg-9 col-12">
+                  <div
+                    className={`input-wrapper ${
+                      this.state.pushUpLinkError ? 'errored' : ''
+                    }`}
+                  >
+                    <input
+                      type="link"
+                      onChange={e =>
+                        this.onInputChange(
+                          e,
+                          'pushUpLink',
+                          /(http[s]?:\/\/)?[^\s(["<,>]*\.[^\s[",><]*/g
+                        )
+                      }
+                      value={this.state.pushUpLink}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col col-lg-4 col-12">
+              <AvatarUpdater
+                onImageSelect={this.receiveImage}
+                errored={this.state.imageError}
+                initialImage={this.state.image}
+              />
+            </div>
+          </div>
 
-        <div className="row">
-          <div className="col-12">
-            <a
-              className="button button-main  m-auto"
-              onClick={this.onSubmit}
-            >
-              Отправить
-            </a>
+          <div className="row">
+            <div className="offset-lg-2 col-lg-10 col-12">
+              <div className="checkboxWrapper">
+                <label className="check">
+                  <input
+                    type="checkbox"
+                    checked={this.state.acceptRules}
+                    onChange={e =>
+                      this.setState({
+                        acceptRules: e.target.checked,
+                        acceptRulesError: null
+                      })
+                    }
+                  />
+                  <div
+                    className={`box ${
+                      this.state.acceptRulesError ? 'error' : ''
+                    }`}
+                  />
+                </label>
+                <h4>
+                  Я ознaкомлен с <a href="#">правилами выполнения</a> элементов
+                </h4>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-12">
+              <a className="button button-main  m-auto" onClick={this.onSubmit}>
+                Отправить
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 

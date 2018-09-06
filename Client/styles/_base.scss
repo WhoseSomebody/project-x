@@ -18,9 +18,6 @@ h5 {
 a {
   cursor: pointer;
 }
-a:not([href]):not([tabindex]) {
-  color: unset !important;
-}
 
 .text-react-blue {
   color: $react-blue;
@@ -41,11 +38,18 @@ a:not([href]):not([tabindex]) {
   text-align: center;
   transition: all 200ms linear;
   cursor: pointer;
+
   &.button-main {
+    &:not([href]):not([tabindex]) {
+      color: #ffffff;
+    }
     background: linear-gradient(154.42deg, #ff7a38 0%, #d62424 100%);
     color: #ffffff;
   }
   &.button-inverse {
+    &:not([href]):not([tabindex]) {
+      color: #ed493b;
+    }
     border-radius: 2px;
     color: #ed493b !important;
     font-size: 24px;

@@ -144,7 +144,8 @@ class AvatarUpdater extends React.Component {
                       processingImage: false,
                       image: {
                         src: img
-                      }
+                      },
+                      isImgModalOpen: true
                     });
                   }
                 );

@@ -7,6 +7,9 @@ import Slider from 'rc-slider';
 import uuid from 'uuid';
 import Dropzone from 'react-dropzone';
 import ReactModal from 'react-modal';
+import EXIF from 'exif-js';
+import ImageLoader from 'react-image-file';
+
 const compressorSettings = {
   toWidth: 500,
   mimeType: 'image/jpeg',
@@ -24,12 +27,10 @@ class AvatarUpdater extends React.Component {
       image: {
         scale: 1
       },
-      isCameraActivated: false,
       isImgModalOpen: false,
       rotate: 0
     };
   }
-
   handleSlider = value => {
     this.setState({
       image: {
@@ -64,14 +65,20 @@ class AvatarUpdater extends React.Component {
       this.toggleImageModal(false);
       const name = uuid.v1();
       const file = new File([res], name);
-      this.props.onSubmit(file);
+      this.setState({
+        image: {
+          ...this.state.image,
+          src: file
+        }
+      });
+      this.props.onImageSelect(file);
     });
 
   render() {
     return (
       <div>
         <div
-          className="imageWrapper"
+          className={`imageWrapper ${this.props.errored ? 'errored' : ''}`}
           role="presentation"
           // onClick={() => this.toggleImageModal(true)}
         >
@@ -81,17 +88,33 @@ class AvatarUpdater extends React.Component {
             multiple={false}
             onDrop={accepted => {
               if (accepted[0]) {
-                this.toggleImageModal(true);
-                this.setState({ processingImage: true }, () => {
+                EXIF.getData(accepted[0], () => {
+                  var orientation = EXIF.getTag(accepted[0], 'Orientation');
+                  let rotatePic = 0;
+                  switch (orientation) {
+                    case 8:
+                      rotatePic = 270;
+                      break;
+                    case 6:
+                      rotatePic = 90;
+                      break;
+                    case 3:
+                      rotatePic = 180;
+                      break;
+                    default:
+                      rotatePic = 0;
+                  }
                   imageCompressor.run(
                     accepted[0].preview,
                     compressorSettings,
                     img => {
                       this.setState({
                         processingImage: false,
+                        isImgModalOpen: true,
                         image: {
                           src: img
-                        }
+                        },
+                        rotate: rotatePic
                       });
                     }
                   );
@@ -101,8 +124,37 @@ class AvatarUpdater extends React.Component {
             activeClassName="active"
           >
             {/* <div className="dropzoneNote">+ Upload Photo</div> */}
+            <div className="image">
+              <ImageLoader file={this.props.initialImage} alt="" />
+            </div>
           </Dropzone>
         </div>
+        <Dropzone
+          accept="image/*"
+          className="button button-inverse block"
+          multiple={false}
+          onDrop={accepted => {
+            if (accepted[0]) {
+              this.setState({ processingImage: true }, () => {
+                imageCompressor.run(
+                  accepted[0].preview,
+                  compressorSettings,
+                  img => {
+                    this.setState({
+                      processingImage: false,
+                      image: {
+                        src: img
+                      }
+                    });
+                  }
+                );
+              });
+            }
+          }}
+          activeClassName="active"
+        >
+          Загрузить фото
+        </Dropzone>
         <ReactModal
           className="Modal"
           overlayClassName="Overlay"
@@ -123,9 +175,9 @@ class AvatarUpdater extends React.Component {
                   this.editor = editor;
                 }}
                 image={this.state.image.src}
-                width={300}
-                height={400}
-                // border={50}
+                width={350}
+                height={350}
+                border={50}
                 color={[255, 255, 255, 0.95]} // RGBA
                 scale={this.state.image.scale}
                 rotate={this.state.rotate}
@@ -140,8 +192,8 @@ class AvatarUpdater extends React.Component {
               </a>
               <div className="slider">
                 <div className="textTips">
-                  <span>Small</span>
-                  <span>Large</span>
+                  <span>меншье</span>
+                  <span>больше</span>
                 </div>
                 <Slider
                   defultValue={this.state.image.scale}
@@ -150,9 +202,7 @@ class AvatarUpdater extends React.Component {
                   onChange={this.handleSlider}
                 />
               </div>
-              <div className="textTips">
-                Reposition the photo to set the thumbnail
-              </div>
+              <div className="textTips">Двигайте фотографию для обрезки</div>
               <div className="buttons">
                 <a
                   className="button button-inverse block"
@@ -164,7 +214,7 @@ class AvatarUpdater extends React.Component {
                   className="button button-inverse block"
                   onClick={() => this.returnProccessedImage()}
                 >
-                  Загрузить
+                  Ок
                 </a>
               </div>
             </div>
@@ -181,8 +231,9 @@ class AvatarUpdater extends React.Component {
 }
 
 AvatarUpdater.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  initalImage: PropTypes.string
+  onImageSelect: PropTypes.func.isRequired,
+  initialImage: PropTypes.string,
+  errored: PropTypes.bool
 };
 
 export default AvatarUpdater;

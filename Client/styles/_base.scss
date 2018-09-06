@@ -18,6 +18,9 @@ h5 {
 a {
   cursor: pointer;
 }
+a:not([href]):not([tabindex]) {
+  color: unset !important;
+}
 
 .text-react-blue {
   color: $react-blue;
@@ -37,6 +40,7 @@ a {
   line-height: 63px;
   text-align: center;
   transition: all 200ms linear;
+  cursor: pointer;
   &.button-main {
     background: linear-gradient(154.42deg, #ff7a38 0%, #d62424 100%);
     color: #ffffff;

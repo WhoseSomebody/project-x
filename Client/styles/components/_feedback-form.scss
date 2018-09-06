@@ -30,17 +30,28 @@
       border-color: #4a29bf;
     }
   }
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .errored input {
+    border-color: red;
+  }
   .imageWrapper {
-    height: 410px;
+    height: 402px;
     width: 302px;
     max-width: 100%;
     border: 2px solid #272727;
     border-radius: 2px;
-    margin: 40px auto;
+    margin: 40px auto 25px auto;
     background-image: url('../assets/noun_Photo_1906155@2x.png');
     background-position: center;
     background-size: 40%;
     background-repeat: no-repeat;
+    &.errored {
+      border-color: red;
+    }
   }
   .button.block {
     max-width: 302px;

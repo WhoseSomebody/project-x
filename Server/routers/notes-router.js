@@ -2,6 +2,7 @@
 
 // package references
 const express = require('express');
+var formidable = require('formidable');
 
 // app references
 const NoteManager = require('../Services/NoteManager');
@@ -17,12 +18,13 @@ const notesRouter = () => {
   const router = express.Router();
 
   router
-    .get('/send-email', (req, res) => {
-      console.log(req, res);
-      emailManager.sendEmail();
-      res
-        .status(200)
-        .send();
+    .post('/send-email', (req, res) => {
+      var form = new formidable.IncomingForm();
+      form.parse(req, function(err, fields, files) {
+        emailManager.sendEmail({ fields, files });
+        res.writeHead(200);
+        res.end();
+      });
     })
     .delete('/notes/:id', (request, response) => {
       const { id } = request.params;
@@ -144,5 +146,16 @@ const notesRouter = () => {
 
   return router;
 };
+
+function collectRequestData(request, callback) {
+  let body = '';
+  request.on('data', chunk => {
+    body += chunk.toString();
+  });
+  request.on('end', () => {
+    console.log(parse(body));
+    callback(parse(body));
+  });
+}
 
 module.exports = notesRouter;

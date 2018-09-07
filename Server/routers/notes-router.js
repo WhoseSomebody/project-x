@@ -26,6 +26,99 @@ const notesRouter = () => {
         res.end();
       });
     })
+    .get('/list-participants', (req, res) => {
+      res.json({
+        page: 1,
+        pages: 1,
+        limit: 12,
+        participants: [
+          {
+            fullName: 'Иван Пупкин',
+            age: 23,
+            weight: 85,
+            height: 193,
+            image_url: 'https://picsum.photos/300/400'
+          },
+          {
+            fullName: 'Иван Пупкин',
+            age: 23,
+            weight: 85,
+            height: 193,
+            image_url: 'https://picsum.photos/300/400'
+          },
+          {
+            fullName: 'Иван Пупкин',
+            age: 23,
+            weight: 85,
+            height: 193,
+            image_url: 'https://picsum.photos/300/400'
+          },
+          {
+            fullName: 'Иван Пупкин',
+            age: 23,
+            weight: 85,
+            height: 193,
+            image_url: 'https://picsum.photos/300/400'
+          },
+          {
+            fullName: 'Иван Пупкин',
+            age: 23,
+            weight: 85,
+            height: 193,
+            image_url: 'https://picsum.photos/300/400'
+          },
+          {
+            fullName: 'Иван Пупкин',
+            age: 23,
+            weight: 85,
+            height: 193,
+            image_url: 'https://picsum.photos/300/400'
+          },
+          {
+            fullName: 'Иван Пупкин',
+            age: 23,
+            weight: 85,
+            height: 193,
+            image_url: 'https://picsum.photos/300/400'
+          },
+          {
+            fullName: 'Иван Пупкин',
+            age: 23,
+            weight: 85,
+            height: 193,
+            image_url: 'https://picsum.photos/300/400'
+          },
+          {
+            fullName: 'Иван Пупкин',
+            age: 23,
+            weight: 85,
+            height: 193,
+            image_url: 'https://picsum.photos/300/400'
+          },
+          {
+            fullName: 'Иван Пупкин',
+            age: 23,
+            weight: 85,
+            height: 193,
+            image_url: 'https://picsum.photos/300/400'
+          },
+          {
+            fullName: 'Иван Пупкин',
+            age: 23,
+            weight: 85,
+            height: 193,
+            image_url: 'https://picsum.photos/300/400'
+          },
+          {
+            fullName: 'Иван Пупкин',
+            age: 23,
+            weight: 85,
+            height: 193,
+            image_url: 'https://picsum.photos/300/400'
+          },
+        ]
+      });
+    })
     .delete('/notes/:id', (request, response) => {
       const { id } = request.params;
 

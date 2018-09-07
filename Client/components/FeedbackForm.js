@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import uuidv1 from 'uuid/v1';
 import AvatarUpdater from '../components/AvatarUpdater';
 import feedbackService from '../services/feedback-service';
 
@@ -142,7 +141,6 @@ class FeedbackForm extends Component {
                   >
                     <input
                       type="text"
-                      autoFocus
                       onChange={e =>
                         this.onInputChange(e, 'name', /^(?!\s*$).+/g)
                       }

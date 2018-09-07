@@ -1,0 +1,24 @@
+.note {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+  .subtitle {
+    color: #878d92;
+    font-size: 14px;
+    line-height: 16px;
+  }
+  .count {
+    color: #272727;
+    font-size: 36px;
+    line-height: 44px;
+    &.violet {
+      color: #4a29bf;
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .note {
+    text-align: center;
+  }
+}

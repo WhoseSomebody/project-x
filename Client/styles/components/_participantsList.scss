@@ -1,0 +1,55 @@
+.card-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40px;
+  .card-top {
+    overflow: hidden;
+    height: 300px;
+    width: 230px;
+    img {
+      min-width: 100%;
+      min-height: 100%;
+    }
+  }
+}
+
+.pagination {
+  margin: 0 auto 40px auto;
+  font-size: 24px;
+  line-height: 29px;
+  font-family: 'Oswald', sans-serif;
+  a {
+    color: #bdc0c3;
+    &.focus {
+      outline: none;
+    }
+  }
+  .active a {
+    color: #fb3c44;
+  }
+  .disabled {
+    opacity: 0;
+    pointer-events: none;
+    a {
+      cursor: default;
+    }
+  }
+  li {
+    margin: 5px;
+    &.next {
+      margin-left: 15px;
+    }
+    &.previous {
+      margin-right: 15px;
+    }
+    &.break-me {
+      pointer-events: none;
+    }
+  }
+  li:not(.previous):not(.next):not(.break-me):not(:nth-last-of-type(2)):after {
+    content: ',';
+    color: #bdc0c3;
+  }
+}

@@ -1,3 +1,4 @@
+/* eslint-disable  react/no-unescaped-entities */
 import React, { Component } from 'react';
 import ModalVideo from 'react-modal-video';
 import Parallax from 'parallax-js';
@@ -22,7 +23,7 @@ export default class MainPage extends Component {
   }
   render() {
     return (
-      <div className="row row-1">
+      <div className="row row-1 main-page">
         <div className="container mainWrapper">
           <div className="block-1 row">
             <div className="col col-md-4 col-12">

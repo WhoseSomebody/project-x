@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import MainPage from './MainPage';
 import ParticipantsPage from './ParticipantsPage';
-import NoteManager from './Notes/NoteManager';
+import TechniquesPage from './TechniquesPage';
 import Header from './Header';
 
 export default class App extends Component {
@@ -22,7 +22,7 @@ export default class App extends Component {
         {...rest}
         render={props => {
           return (
-            <div className="contentWrapper">
+            <div className="contentWrapper" id="wrapper">
               <Header {...props} />
               <Component {...props} />
             </div>
@@ -35,7 +35,7 @@ export default class App extends Component {
         <div>
           <HeaderedRoute exact path="/" component={MainPage} />
           <HeaderedRoute path="/participants" component={ParticipantsPage} />
-          <HeaderedRoute path="/techniques" component={NoteManager} />
+          <HeaderedRoute path="/techniques" component={TechniquesPage} />
         </div>
       </Router>
     );

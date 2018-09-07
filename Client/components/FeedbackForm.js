@@ -103,7 +103,7 @@ class FeedbackForm extends Component {
           pushUpLink,
           image
         })
-        .then(res => {
+        .then(() => {
           this.setState({
             sentSuccess: true
           });

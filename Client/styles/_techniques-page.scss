@@ -1,0 +1,67 @@
+.inversed {
+  background-color: #1d1d1d;
+  &.header {
+    background-color: #1d1d1d;
+    li a {
+      color: #8c8c8c;
+    }
+    li.active a {
+      color: #fff;
+    }
+  }
+}
+.techniques-page {
+  background-color: #1d1d1d;
+  color: #fff;
+  .main-title {
+    font-size: 60px;
+    margin: 100px 0 170px 0;
+  }
+  .centered {
+    text-align: center;
+    width: 100%;
+  }
+  .task {
+    margin: 40px 0;
+    .number-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      h1 {
+        font-size: 72px;
+      }
+    }
+    h3 {
+      font-size: 36px;
+      line-height: 44px;
+      margin-bottom: 25px;
+    }
+    .video-wrapper > div {
+      background-color: #3b3b3b;
+      // display: flex;
+      // justify-content: center;
+      // align-items: center;
+    }
+    font-size: 20px;
+    line-height: 30px;
+  }
+  .form-wrapper {
+    h3 {
+      margin: 100px 0 70px 0;
+      font-size: 36px;
+    }
+  }
+  .feedback-form input {
+    border-color: #c2c2c2;
+    color: #fff;
+  }
+  .feedback-form .imageWrapper {
+    border-color: #c2c2c2;
+  }
+}
+
+@media (max-width: 576px) {
+  .note {
+    text-align: center;
+  }
+}

@@ -1,8 +1,8 @@
 .main-page {
   .block-1 {
     height: 100vh;
-    position: relative;
     margin-top: -100px;
+    position: relative;
     h1,
     h4 {
       color: #4a29bf;
@@ -74,7 +74,7 @@
     }
   }
   .parallax {
-    position: absolute;
+    position: absolute !important;
     height: 100vh;
     width: 100%;
     max-width: 100vw;
@@ -131,7 +131,7 @@
 
   .block-3 {
     color: #fff;
-    padding: 50px 0;
+    padding: 300px 0;
     .background {
       position: absolute;
       left: 50%;
@@ -139,6 +139,29 @@
       width: 100vw;
       background-color: #272727;
       height: 1600px;
+      // position: relative;
+      &:before {
+        content: '';
+        position: absolute;
+        top: -345px;
+        background-position: top;
+        background-size: 1400px;
+        background-repeat: repeat-x;
+        height: 100%;
+        width: 100vw;
+        background-image: url('../assets/top border blocks@2x.png');
+      }
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: -275px;
+        background-position: bottom;
+        background-size: 1400px;
+        background-repeat: repeat-x;
+        height: 100%;
+        width: 100vw;
+        background-image: url('../assets/Bottom block@2x.png');
+      }
     }
     .task {
       margin: 100px 0;
@@ -198,7 +221,7 @@
         margin: 50px 0;
       }
       .background {
-        height: 1900px;
+        height: 2100px;
       }
     }
   }

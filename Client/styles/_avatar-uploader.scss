@@ -8,6 +8,7 @@
   position: absolute;
   color: #3c454f;
   min-height: 470px;
+  max-width: 100vw;
   // min-width: 50%;
   background-color: #ffffff;
   top: 50%;
@@ -80,7 +81,7 @@
 .cardContentWrapper {
   display: flex;
   flex-direction: row;
-  margin-top: 2rem;
+  // margin-top: 2rem;
 }
 .textTips {
   color: #bdc0c3;
@@ -104,6 +105,9 @@
 }
 canvas {
   cursor: pointer;
+  transform: translateX(-50%);
+  left: 50%;
+  position: absolute;
 }
 .dropzoneNote {
   color: #b8b8b8;
@@ -454,11 +458,20 @@ canvas {
   position: absolute;
   font-size: 17px;
   right: 20px;
+  top: 395px;
   background: #fff;
   border: 1px solid #bdc0c3;
   border-radius: 2px;
   padding: 0 4px;
   color: #bdc0c3;
+  height: 35px;
+  width: 35px;
+  background-position: center;
+  background-size: 80%;
+  background-image: url('../assets/rotate button.png');
+  background-repeat: no-repeat;
+  /* opacity: 0.5; */
+  border-color: #272727;
 }
 .dropzoneWrapper {
   height: 100%;
@@ -472,4 +485,9 @@ canvas {
     width: 100%;
     background-size: cover !important;
   }
+}
+.canvasWrapper {
+  width: 100%;
+  min-width: 450px;
+  min-height: 450px;
 }

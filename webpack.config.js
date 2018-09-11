@@ -30,7 +30,13 @@ module.exports = {
         exclude: /node_modules/
       },
       {
-        test: /\.s?css$/,
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
+        // exclude: /node_modules/,
+        include: [/node_modules\/react-loader-spinner\/dist\/loader\/css/]
+      },
+      {
+        test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
         exclude: /node_modules/
       },

@@ -75,6 +75,7 @@
     height: 40px;
     display: flex;
     margin-bottom: 70px;
+    z-index: 1;
     h4 {
       margin-left: 10px;
       a {
@@ -85,6 +86,7 @@
   .check {
     width: 30px;
     height: 30px;
+    min-width: 30px;
     input {
       display: none;
       &:checked + .box {
@@ -129,5 +131,11 @@
         bottom: 5%;
       }
     }
+  }
+}
+
+.dark {
+  .imageWrapper {
+    background-image: url('../assets/noun_Photo_1906155@2x 2.png');
   }
 }

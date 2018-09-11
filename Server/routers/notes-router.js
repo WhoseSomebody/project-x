@@ -5,12 +5,12 @@ const express = require('express');
 var formidable = require('formidable');
 
 // app references
-const NoteManager = require('../Services/NoteManager');
 const EmailManager = require('../Services/EmailManager');
+const ParticipantsManager = require('../Services/ParticipantsManager');
 
 // initialization
-const noteManager = new NoteManager();
 const emailManager = new EmailManager();
+const particiantsManager = new ParticipantsManager();
 
 // build router
 
@@ -26,229 +26,53 @@ const notesRouter = () => {
         res.end();
       });
     })
+    .post('/participant', (req, res) => {
+      var form = new formidable.IncomingForm();
+      let formFields = {};
+      return form
+        .parse(req)
+        .on('field', function(name, val) {
+          formFields[name] = val;
+        })
+        .on('fileBegin', function(name, file) {
+          file.path = process.cwd() + '/photos/' + file.name;
+        })
+        .on('file', function(name, file) {
+          formFields.image = file;
+          return particiantsManager
+            .addParticipant(formFields)
+            .then(id => res.status(201).send({ id: id }))
+            .catch(error => {
+              console.log(error);
+              res.status(500).send(error);
+            });
+        });
+    })
+    .delete('/participant/:id', (req, res) => {
+      const { id } = req.params;
+      if (!id) {
+        res.status(400).send('Id is required');
+      } else {
+        particiantsManager
+          .removeParticipant(id)
+          .then(() => res.status(200).send('Participant deleted'))
+          .catch(error => {
+            console.log(error.message);
+            res.status(500).send();
+          });
+      }
+    })
     .get('/list-participants', (req, res) => {
-      res.json({
-        page: 1,
-        pages: 1,
-        limit: 12,
-        participants: [
-          {
-            fullName: 'Иван Пупкин',
-            age: 23,
-            weight: 85,
-            height: 193,
-            image_url: 'https://picsum.photos/300/400'
-          },
-          {
-            fullName: 'Иван Пупкин',
-            age: 23,
-            weight: 85,
-            height: 193,
-            image_url: 'https://picsum.photos/300/400'
-          },
-          {
-            fullName: 'Иван Пупкин',
-            age: 23,
-            weight: 85,
-            height: 193,
-            image_url: 'https://picsum.photos/300/400'
-          },
-          {
-            fullName: 'Иван Пупкин',
-            age: 23,
-            weight: 85,
-            height: 193,
-            image_url: 'https://picsum.photos/300/400'
-          },
-          {
-            fullName: 'Иван Пупкин',
-            age: 23,
-            weight: 85,
-            height: 193,
-            image_url: 'https://picsum.photos/300/400'
-          },
-          {
-            fullName: 'Иван Пупкин',
-            age: 23,
-            weight: 85,
-            height: 193,
-            image_url: 'https://picsum.photos/300/400'
-          },
-          {
-            fullName: 'Иван Пупкин',
-            age: 23,
-            weight: 85,
-            height: 193,
-            image_url: 'https://picsum.photos/300/400'
-          },
-          {
-            fullName: 'Иван Пупкин',
-            age: 23,
-            weight: 85,
-            height: 193,
-            image_url: 'https://picsum.photos/300/400'
-          },
-          {
-            fullName: 'Иван Пупкин',
-            age: 23,
-            weight: 85,
-            height: 193,
-            image_url: 'https://picsum.photos/300/400'
-          },
-          {
-            fullName: 'Иван Пупкин',
-            age: 23,
-            weight: 85,
-            height: 193,
-            image_url: 'https://picsum.photos/300/400'
-          },
-          {
-            fullName: 'Иван Пупкин',
-            age: 23,
-            weight: 85,
-            height: 193,
-            image_url: 'https://picsum.photos/300/400'
-          },
-          {
-            fullName: 'Иван Пупкин',
-            age: 23,
-            weight: 85,
-            height: 193,
-            image_url: 'https://picsum.photos/300/400'
-          },
-        ]
-      });
-    })
-    .delete('/notes/:id', (request, response) => {
-      const { id } = request.params;
-
-      if (!id) {
-        response.status(400).send('Title is required');
-      } else {
-        noteManager
-          .removeNote(id)
-          .then(() => response.status(200).send('Note deleted'))
-          .catch(error => {
-            console.log(error.message);
-            response.status(500).send();
-          });
-      }
-    })
-    .get('/notes/:id', (request, response) => {
-      const { id } = request.params;
-
-      if (!id) {
-        response.status(400).send('Id is required');
-      } else {
-        noteManager
-          .findNoteById(id)
-          .then(note => response.json(note))
-          .catch(error => {
-            console.log(error.message);
-            response.status(500).send();
-          });
-      }
-    })
-    .get('/notes', (request, response) => {
-      const { title, tag } = request.query;
-
-      if (title) {
-        noteManager
-          .findNotesByTitle(title)
-          .then(notes => response.json(notes))
-          .catch(error => {
-            console.log(error);
-            response.status(500).send();
-          });
-      } else if (tag) {
-        noteManager
-          .findNotesByTag(tag)
-          .then(notes => response.json(notes))
-          .catch(error => {
-            console.log(error);
-            response.status(500).send();
-          });
-      } else {
-        noteManager
-          .listNotes()
-          .then(notes => response.json(notes))
-          .catch(error => {
-            console.log(error);
-            response.status(500).send();
-          });
-      }
-    })
-    .post('/notes', (request, response) => {
-      console.log(request.body);
-      const { title, content, tags } = request.body;
-
-      if (!title) {
-        response.status(400).send('Title is required');
-      } else if (!content) {
-        response.status(400).send('Content is required');
-      } else {
-        noteManager
-          .addNote(title, content, tags)
-          .then(id => response.status(201).send({ id: id }))
-          .catch(error => {
-            console.log(error.message);
-            response.status(500).send(error.message);
-          });
-      }
-    })
-    .put('/notes', (request, response) => {
-      const { id, title, content, tags } = request.body.note;
-
-      if (!id) {
-        response.status(400).send('Id is required');
-      } else if (!title) {
-        response.status(400).send('Title is required');
-      } else if (!content) {
-        response.status(400).send('Content is required');
-      } else {
-        noteManager
-          .updateNote(id, title, content, tags)
-          .then(() => response.status(200).send())
-          .catch(error => {
-            console.log(error.message);
-            response.status(500).send(error.message);
-          });
-      }
-    })
-    .patch('/notes/:id', (request, response) => {
-      // not an entirely correct use of patch but convenient
-      // in terms of providing the 'tag' functionality
-
-      const { id } = request.params;
-      const { tags } = request.body;
-
-      if (!id) {
-        response.status(400).send('Id is required');
-      } else if (!tags) {
-        response.status(400).send('Tags is required');
-      } else {
-        noteManager
-          .tagNote(id, tags)
-          .then(() => response.status(200).send('Tagged note'))
-          .catch(error => {
-            console.log(error.message);
-            response.status(500).send();
-          });
-      }
+      return particiantsManager
+        .listParticipants(req.query)
+        .then(participants => res.json(participants))
+        .catch(error => {
+          console.log(error);
+          res.status(500).send(error);
+        });
     });
 
   return router;
 };
-
-function collectRequestData(request, callback) {
-  let body = '';
-  request.on('data', chunk => {
-    body += chunk.toString();
-  });
-  request.on('end', () => {
-    console.log(parse(body));
-    callback(parse(body));
-  });
-}
 
 module.exports = notesRouter;

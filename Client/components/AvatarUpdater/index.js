@@ -171,25 +171,26 @@ class AvatarUpdater extends React.Component {
         >
           <div className="cardContentWrapper">
             <div className="col col-12">
-              <AvatarEditor
-                ref={editor => {
-                  this.editor = editor;
-                }}
-                image={this.state.image.src}
-                width={350}
-                height={350}
-                border={50}
-                color={[255, 255, 255, 0.95]} // RGBA
-                scale={this.state.image.scale}
-                rotate={this.state.rotate}
-              />
+              <div className="canvasWrapper">
+                <AvatarEditor
+                  ref={editor => {
+                    this.editor = editor;
+                  }}
+                  image={this.state.image.src}
+                  width={350}
+                  height={350}
+                  border={50}
+                  color={[255, 255, 255, 0.95]} // RGBA
+                  scale={this.state.image.scale}
+                  rotate={this.state.rotate}
+                />
+              </div>
               <a
                 onClick={() =>
                   this.setState({ rotate: this.state.rotate + 90 })
                 }
                 className="rotate-button"
               >
-                ↻
               </a>
               <div className="slider">
                 <div className="textTips">

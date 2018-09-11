@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const Header = props => {
   console.log(props);
   return (
-    <div className="container header" id="header">
+    <div className="header" id="header">
       <ul className="list-inline text-centered absoluted">
         <li
           className={`list-inline-item ${

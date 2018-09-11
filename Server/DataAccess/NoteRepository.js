@@ -5,7 +5,7 @@ const DbConnection = require('./DbConnection');
 
 const collection = 'notes';
 
-const connect = () => new DbConnection('mongodb://admin:Opium11@ds243502.mlab.com:43502/project-x');
+const connect = () => new DbConnection('mongodb://admin:ProjectX2018@ds151892.mlab.com:51892/projectx');
 
 const filters = {
     id: (id) => {

@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import Cookies from 'js-cookie';
 import AvatarUpdater from '../components/AvatarUpdater';
 import feedbackService from '../services/feedback-service';
 
 class FeedbackForm extends Component {
   constructor(props) {
     super(props);
-
+    Cookies.remove('emailSent'),
     this.state = {
       name: 'Иван',
       surname: 'Бычара',
@@ -18,7 +20,7 @@ class FeedbackForm extends Component {
       muscleUpLink: 'https://www.youtube.com/watch?v=JJ44WA_eV8E',
       pushUpLink: 'https://www.youtube.com/watch?v=JJ44WA_eV8E',
       image: null,
-      sentSuccess: sessionStorage.getItem('emailSent'),
+      sentSuccess: Cookies.get('emailSent'),
       nameError: false,
       surnameError: false,
       ageError: false,
@@ -107,9 +109,9 @@ class FeedbackForm extends Component {
           this.setState({
             sentSuccess: true
           });
-          sessionStorage.setItem('emailSent', true);
+          Cookies.set('emailSent', true, { expires: 1 });
         })
-        .catch(err => console.log('Not sent', err));
+        .catch(err => alert('Not sent: ' + err.toString()));
     }
   };
 
@@ -117,7 +119,7 @@ class FeedbackForm extends Component {
     if (this.state.sentSuccess) {
       return (
         <div className="alert">
-          <h2>Благодарим за участие!</h2>;
+          <h2>Благодарим за участие!</h2>
         </div>
       );
     } else {
@@ -353,14 +355,26 @@ class FeedbackForm extends Component {
                   />
                 </label>
                 <h4>
-                  Я ознaкомлен с <a href="#">правилами выполнения</a> элементов
+                  <div
+                    href=""
+                    role="presentation"
+                    onClick={() =>
+                      this.setState({
+                        acceptRules: !this.state.acceptRules,
+                        acceptRulesError: null
+                      })
+                    }
+                  >
+                    Я ознaкомлен с{' '}
+                    <Link to="/techniques">правилами выполнения</Link> элементов
+                  </div>
                 </h4>
               </div>
             </div>
           </div>
           <div className="row">
             <div className="col-12">
-              <a className="button button-main  m-auto" onClick={this.onSubmit}>
+              <a className="button button-main m-auto" onClick={this.onSubmit}>
                 Отправить
               </a>
             </div>

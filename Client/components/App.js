@@ -8,7 +8,7 @@ import TechniquesPage from './TechniquesPage';
 import LoginPage from './LoginPage';
 import AdminPage from './AdminPage';
 import Header from './Header';
-
+import MobileHeader from './MobileHeader';
 export default class App extends Component {
   constructor() {
     super();
@@ -27,6 +27,8 @@ export default class App extends Component {
         render={props => {
           return (
             <div className="contentWrapper" id="wrapper">
+              
+              <MobileHeader {...props}/>
               <Header {...props} />
               <Component {...props} />
               <Popup />

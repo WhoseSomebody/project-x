@@ -1,7 +1,8 @@
 /* eslint-disable  react/no-unescaped-entities */
 import React, { Component } from 'react';
 import ModalVideo from 'react-modal-video';
-import Parallax from 'parallax-js';
+import { Link } from 'react-router-dom';
+// import Parallax from 'parallax-js';
 import FeedbackForm from '../FeedbackForm';
 
 export default class MainPage extends Component {
@@ -18,8 +19,8 @@ export default class MainPage extends Component {
   }
 
   componentDidMount() {
-    const scene = document.getElementById('scene');
-    const parallaxInstance = new Parallax(scene); // eslint-disable-line
+    // const scene = document.getElementById('scene');
+    // const parallaxInstance = new Parallax(scene); // eslint-disable-line
 
     document.getElementById('wrapper').className =
       document.getElementById('wrapper').className + ' main-page';
@@ -28,6 +29,28 @@ export default class MainPage extends Component {
     return (
       <div className="container mainWrapper">
         <div className="block-1 row">
+          <div className="background" />
+          <div className="col col-md-6 col-12">
+            <div className="content-wrapper">
+              <div className="main-logo">
+                <div className="top">
+                  <span className="big">ROAD</span>
+                  <span className="middle">
+                    <div>TO</div>
+                    <div>THE</div>
+                  </span>
+                  <span className="big">DREAM</span>
+                </div>
+                <div className="bottom">WORKOUT CHAMPIONSHIP</div>
+              </div>
+              <div className="venok" />
+              <a href="#block-4" className="button button-main">
+                Принять вызов!
+              </a>
+            </div>
+          </div>
+        </div>
+        {/* <div className="block-1 row">
           <div className="col col-md-4 col-12">
             <h1>Проект Х</h1>
             <h4>Ты. Новый. Лучший.</h4>
@@ -61,7 +84,7 @@ export default class MainPage extends Component {
             <div data-depth="0.5" className="White" />
             <div data-depth="0.7" className="Violet" />
           </div>
-        </div>
+        </div> */}
         <div className="block-2 row">
           <div className="col col-md-4 col-12">
             <div className="big-x" />
@@ -84,9 +107,10 @@ export default class MainPage extends Component {
             <div className="col col-md-6 offset-lg-2 col-lg-5 col-12">
               <h4 className="task-name">Запиши видео</h4>
               <p>
-                Посмотри <a href="#"> правила</a>,{' '}
-                <a href="#"> технику выполнения</a> и запиши видео своих
-                результатов, и отправь нам используя форму с низу.
+                Посмотри{' '}
+                <Link to="/techniques">правила, технику выполнения</Link> и
+                запиши видео своих результатов, и отправь нам используя форму с
+                низу.
               </p>
               <p>
                 Вы должны выполнить:
@@ -97,6 +121,9 @@ export default class MainPage extends Component {
             </div>
           </div>
           <div className="task row">
+            <div className="d-md-none col col-md-6 offset-lg-2 col-lg-5 col-12 image-wrapper">
+              <div className="illustration mail" />
+            </div>
             <div className="col col-md-6 col-lg-5 col-12">
               <h4 className="task-name">Получи приглашение на батл</h4>
               <p>
@@ -105,7 +132,7 @@ export default class MainPage extends Component {
                 участия в Чемпионате!
               </p>
             </div>
-            <div className="col col-md-6 offset-lg-2 col-lg-5 col-12 image-wrapper">
+            <div className="d-none d-md-flex col col-md-6 offset-lg-2 col-lg-5 col-12 image-wrapper">
               <div className="illustration mail" />
             </div>
           </div>
@@ -127,7 +154,7 @@ export default class MainPage extends Component {
             </div>
           </div>
         </div>
-        <div className="block-4 row">
+        <div className="block-4 row" id="block-4">
           <div className="col col-12 form-wrapper">
             <FeedbackForm />
           </div>

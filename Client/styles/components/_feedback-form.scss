@@ -31,15 +31,15 @@
   input {
     height: 50px;
     width: 100%;
-    border: 2px solid #272727;
-    border-radius: 36px;
+    border: 2px solid #B2B2B2;
+    border-radius: 3px;
     background: transparent;
-    padding: 5px 18px;
+    padding: 5px 10px;
     font-size: 24px;
     line-height: 29px;
     &:focus {
       outline: none;
-      border-color: #4a29bf;
+      border-color: #1F1F1F;
     }
   }
   input[type='number']::-webkit-inner-spin-button,

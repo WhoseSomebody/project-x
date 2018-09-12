@@ -234,7 +234,7 @@ class AvatarUpdater extends React.Component {
 
 AvatarUpdater.propTypes = {
   onImageSelect: PropTypes.func.isRequired,
-  initialImage: PropTypes.string,
+  initialImage: PropTypes.object,
   errored: PropTypes.bool
 };
 

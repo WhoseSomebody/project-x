@@ -2,7 +2,11 @@
   background-color: #1d1d1d;
   &.header {
     background-color: #1d1d1d;
-    background-image: linear-gradient(to top, rgba(255, 255, 255, 0.08),  rgba(255, 255, 255, 0.15));
+    background-image: linear-gradient(
+      to top,
+      rgba(255, 255, 255, 0.08),
+      rgba(255, 255, 255, 0.15)
+    );
     li a {
       color: #8c8c8c;
     }
@@ -87,6 +91,9 @@
     input {
       border-color: #c2c2c2;
       color: #fff;
+      &:focus {
+        border-color: #fff;
+      }
     }
     .imageWrapper {
       border-color: #c2c2c2;

@@ -7,7 +7,7 @@ import * as axios from 'axios';
 
 // db options
 
-const baseApiUrl = 'http://localhost:8000/api';
+const baseApiUrl = 'http://192.168.0.100:8000/api';
 
 const getParticipants = ({ page, limit }) => {
   return new Promise((resolve, reject) => {

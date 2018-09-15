@@ -13,9 +13,7 @@ class AddNewParticipantForm extends Component {
       height: '183',
       weight: '75',
       email: 'byk.sam@mail.ru',
-      pullUpLink: 'https://www.youtube.com/watch?v=JJ44WA_eV8E',
-      muscleUpLink: 'https://www.youtube.com/watch?v=JJ44WA_eV8E',
-      pushUpLink: 'https://www.youtube.com/watch?v=JJ44WA_eV8E',
+      qualificationLink: 'https://www.youtube.com/watch?v=JJ44WA_eV8E',
       image: null,
       sentSuccess: false,
       nameError: false,
@@ -24,14 +22,16 @@ class AddNewParticipantForm extends Component {
       emailError: false,
       heightError: false,
       weightError: false,
-      pullUpLinkError: false,
-      muscleUpLinkError: false,
-      pushUpLinkError: false,
+      qualificationLinkError: false,
       imageError: false
     };
   }
 
   onInputChange = (e, name, regexp) => {
+    console.log(
+      e.target.value.toString(),
+      RegExp(regexp).test(e.target.value.toString())
+    );
     this.setState({
       [name]: e.target.value,
       [`${name}Error`]: !RegExp(regexp).test(e.target.value.toString())
@@ -49,21 +49,15 @@ class AddNewParticipantForm extends Component {
     const errors = {
       nameError: !RegExp(/^(?!\s*$).+/g).test(this.state.name),
       surnameError: !RegExp(/^(?!\s*$).+/g).test(this.state.surname),
-      ageError: !RegExp(/^[0-9]*$/g).test(this.state.age),
-      heightError: !RegExp(/^[0-9]*$/g).test(this.state.height),
-      weightError: !RegExp(/^[0-9]*$/g).test(this.state.weight),
+      ageError: !RegExp(/^-?\d+$/g).test(this.state.age),
+      heightError: !RegExp(/^-?\d+$/g).test(this.state.height),
+      weightError: !RegExp(/^-?\d+$/g).test(this.state.weight),
       emailError: !RegExp(
         /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/g
       ).test(this.state.email),
-      pullUpLinkError: !RegExp(
+      qualificationLinkError: !RegExp(
         /(http[s]?:\/\/)?[^\s(["<,>]*\.[^\s[",><]*/g
-      ).test(this.state.pullUpLink),
-      muscleUpLinkError: !RegExp(
-        /(http[s]?:\/\/)?[^\s(["<,>]*\.[^\s[",><]*/g
-      ).test(this.state.muscleUpLink),
-      pushUpLinkError: !RegExp(
-        /(http[s]?:\/\/)?[^\s(["<,>]*\.[^\s[",><]*/g
-      ).test(this.state.pushUpLink),
+      ).test(this.state.qualificationLink),
       imageError: !this.state.image
     };
     this.setState({ ...errors });
@@ -82,9 +76,7 @@ class AddNewParticipantForm extends Component {
       height,
       weight,
       email,
-      pullUpLink,
-      muscleUpLink,
-      pushUpLink,
+      qualificationLink,
       image
     } = this.state;
     if (this.validateForm()) {
@@ -96,9 +88,7 @@ class AddNewParticipantForm extends Component {
           height,
           weight,
           email,
-          pullUpLink,
-          muscleUpLink,
-          pushUpLink,
+          qualificationLink,
           image
         })
         .then(() => {
@@ -157,10 +147,10 @@ class AddNewParticipantForm extends Component {
               </div>
             </div>
             <div className="row input-pair">
-              <div className="col col-lg-2 col-12">
+              <div className="col col-lg-3 col-12">
                 <div className="title">Возраст</div>
               </div>
-              <div className="col col-lg-2 col-12">
+              <div className="col col-lg-9 col-12">
                 <div
                   className={`input-wrapper ${
                     this.state.ageError ? 'errored' : ''
@@ -168,15 +158,17 @@ class AddNewParticipantForm extends Component {
                 >
                   <input
                     type="number"
-                    onChange={e => this.onInputChange(e, 'age', /^[0-9]*$/g)}
+                    onChange={e => this.onInputChange(e, 'age', /^-?\d+$/g)}
                     value={this.state.age}
                   />
                 </div>
               </div>
-              <div className="col col-lg-2 col-12">
+            </div>
+            <div className="row input-pair">
+              <div className="col col-lg-3 col-12">
                 <div className="title">Рост</div>
               </div>
-              <div className="col col-lg-2 col-12">
+              <div className="col col-lg-4 col-12">
                 <div
                   className={`input-wrapper ${
                     this.state.heightError ? 'errored' : ''
@@ -184,15 +176,15 @@ class AddNewParticipantForm extends Component {
                 >
                   <input
                     type="number"
-                    onChange={e => this.onInputChange(e, 'height', /^[0-9]*$/g)}
+                    onChange={e => this.onInputChange(e, 'height', /^-?\d+$/g)}
                     value={this.state.height}
                   />
                 </div>
               </div>
-              <div className="col col-lg-2 col-12">
+              <div className="col col-lg-1 col-12">
                 <div className="title">Вес</div>
               </div>
-              <div className="col col-lg-2 col-12">
+              <div className="col col-lg-4 col-12">
                 <div
                   className={`input-wrapper ${
                     this.state.weightError ? 'errored' : ''
@@ -200,7 +192,7 @@ class AddNewParticipantForm extends Component {
                 >
                   <input
                     type="number"
-                    onChange={e => this.onInputChange(e, 'weight', /^[0-9]*$/g)}
+                    onChange={e => this.onInputChange(e, 'weight', /^-?\d+$/g)}
                     value={this.state.weight}
                   />
                 </div>
@@ -232,13 +224,13 @@ class AddNewParticipantForm extends Component {
             </div>
             <div className="row input-pair">
               <div className="col col-lg-3 col-12">
-                <div className="title">Подтягивания</div>
+                <div className="title">Квалификация</div>
                 <div className="subtitle">(Ссылка на видео)</div>
               </div>
               <div className="col col-lg-9 col-12">
                 <div
                   className={`input-wrapper ${
-                    this.state.pullUpLinkError ? 'errored' : ''
+                    this.state.qualificationLinkError ? 'errored' : ''
                   }`}
                 >
                   <input
@@ -246,61 +238,11 @@ class AddNewParticipantForm extends Component {
                     onChange={e =>
                       this.onInputChange(
                         e,
-                        'pullUpLink',
+                        'qualificationLink',
                         /(http[s]?:\/\/)?[^\s(["<,>]*\.[^\s[",><]*/g
                       )
                     }
-                    value={this.state.pullUpLink}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="row input-pair">
-              <div className="col col-lg-3 col-12">
-                <div className="title">Выходы силой</div>
-                <div className="subtitle">(Ссылка на видео)</div>
-              </div>
-              <div className="col col-lg-9 col-12">
-                <div
-                  className={`input-wrapper ${
-                    this.state.muscleUpLinkError ? 'errored' : ''
-                  }`}
-                >
-                  <input
-                    type="link"
-                    onChange={e =>
-                      this.onInputChange(
-                        e,
-                        'muscleUpLink',
-                        /(http[s]?:\/\/)?[^\s(["<,>]*\.[^\s[",><]*/g
-                      )
-                    }
-                    value={this.state.muscleUpLink}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="row input-pair">
-              <div className="col col-lg-3 col-12">
-                <div className="title">Отжимания</div>
-                <div className="subtitle">(Ссылка на видео)</div>
-              </div>
-              <div className="col col-lg-9 col-12">
-                <div
-                  className={`input-wrapper ${
-                    this.state.pushUpLinkError ? 'errored' : ''
-                  }`}
-                >
-                  <input
-                    type="link"
-                    onChange={e =>
-                      this.onInputChange(
-                        e,
-                        'pushUpLink',
-                        /(http[s]?:\/\/)?[^\s(["<,>]*\.[^\s[",><]*/g
-                      )
-                    }
-                    value={this.state.pushUpLink}
+                    value={this.state.qualificationLink}
                   />
                 </div>
               </div>

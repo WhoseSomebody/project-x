@@ -5,7 +5,7 @@ const assert = require('assert');
 const fs = require('fs');
 const participantsRepository = new ParticipantsRepository();
 
-const hostAddress = 'http://192.168.0.100:8000';
+const hostAddress = 'http://0.0.0.0:8000';
 
 class ParticipantManager {
   addParticipant(fields) {
@@ -16,9 +16,7 @@ class ParticipantManager {
       height,
       weight,
       email,
-      pullUpLink,
-      muscleUpLink,
-      pushUpLink,
+      qualificationLink,
       image
     } = fields;
     const imageUrl = hostAddress + '/photos/' + image.name;
@@ -28,15 +26,13 @@ class ParticipantManager {
     return new Promise((resolve, reject) => {
       participantsRepository
         .addParticipant({
-          name: name,
-          surname: surname,
-          age: age,
-          height: height,
-          weight: weight,
-          email: email,
-          pullUpLink: pullUpLink,
-          muscleUpLink: muscleUpLink,
-          pushUpLink: pushUpLink,
+          name,
+          surname,
+          age,
+          height,
+          weight,
+          email,
+          qualificationLink,
           imageUrl
         })
         .then(result => resolve(result.id))

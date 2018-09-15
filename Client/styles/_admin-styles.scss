@@ -68,7 +68,7 @@
         text-align: left;
       }
       .feedback-form {
-          margin-bottom: 20px;
+        margin-bottom: 20px;
       }
     }
     .login-card-footer {
@@ -77,14 +77,22 @@
 }
 
 .admin-page {
-    .form-wrapper {
-        margin: 100px 0;
-    }
-    .centered {
-        width: 100%;
-        text-align: center;
-    }
-    .listWrapper {
-      margin-top: 40px;
-    }
+  .form-wrapper {
+    margin: 100px 0;
+  }
+  .centered {
+    width: 100%;
+    text-align: center;
+  }
+  .listWrapper {
+    margin-top: 40px;
+  }
+}
+
+.delete-modal {
+  min-height: 300px !important;
+}
+.delete-message {
+  margin: auto;
+  text-align: center;
 }

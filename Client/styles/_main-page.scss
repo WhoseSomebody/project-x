@@ -70,15 +70,17 @@
       background-image: url('../assets/Wings 3@2x.png');
     }
     .background {
-      position: absolute;
-      top: 70px;
+      position: fixed;
+      z-index: -1;
+      // top: 70px;
+      bottom: 0;
       left: 50%;
       transform: translateX(-50%);
       max-height: 900px;
       width: 100vw;
       height: 100vh;
       background: url('../assets/Picture@2x.jpg');
-      background-position: right top;
+      background-position: right bottom;
       background-size: cover;
       background-repeat: no-repeat;
     }
@@ -171,16 +173,35 @@
 
   .block-2 {
     margin-top: 100px;
+    // padding-top: 100px;
+    position: relative;
+    .background {
+      height: 100%;
+      width: 100vw;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #e9eaed;
+      min-height: 1000px;
+      position: absolute;
+      // top: -20%;
+    }
     .reason {
       display: flex;
       flex: 1;
       justify-content: center;
+      flex-direction: column;
+      margin-top: 100px;
+      align-items: center;
       .paragraph {
         margin: auto;
         border-left: 3px solid #cd2119;
         padding-left: 30px;
         font-size: 24px;
         line-height: 29px;
+        margin: 10px 0;
+        &.border-transparent {
+          border-color: transparent;
+        }
         .bold {
           color: #e73f25;
           font-weight: bold;
@@ -188,8 +209,9 @@
       }
     }
     .big-x {
-      height: 191px;
-      width: 225px;
+      margin-top: 100px;
+      height: 220px;
+      width: 220px;
       background-image: url('../assets/X@2x.png');
       background-position: center;
       background-size: 100%;
@@ -199,15 +221,18 @@
 
   .block-3 {
     color: #fff;
-    padding: 300px 0;
+    background-color: #272727;
+    position: relative;
+    margin: 30% 0;
+    z-index: 1;
     .background {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
       width: 100vw;
       background-color: #272727;
-      height: 1600px;
-      // position: relative;
+      height: 91%;
+      top: 4%;
       &:before {
         content: '';
         position: absolute;
@@ -233,13 +258,14 @@
     }
     .task {
       margin: 100px 0;
+      max-width: 100%;
       .task-name {
         font-size: 36px;
         line-height: 44px;
         padding-bottom: 20px;
       }
       p {
-        font-size: 20px;
+        font-size: 18px;
         line-height: 30px;
         font-weight: 100;
         a {
@@ -274,9 +300,35 @@
       }
     }
   }
+  .block-4 {
+    position: relative;
+    .background {
+      height: 100%;
+      width: 100vw;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #e9eaed;
+      min-height: 170%;
+      position: absolute;
+      top: -70%;
+    }
+  }
 }
 
+@media (min-width: 993px) {
+  .feedback-form {
+    .title {
+      text-align: right;
+    }
+    .subtitle {
+      text-align: right;
+    }
+  }
+}
 @media (max-width: 992px) {
+  .margin-top-on-small {
+    margin-top: 20px;
+  }
   .lg-none {
     display: none !important;
   }
@@ -289,6 +341,10 @@
       border-left: none !important;
       padding-left: 0 !important;
     }
+  }
+  .bordered-title {
+    border: none !important;
+    padding: 0 !important;
   }
   .block-3 {
     .task {
@@ -309,7 +365,7 @@
       margin: 50px 0;
     }
     .background {
-      height: 2400px !important;
+      // height: 2900px !important;
     }
   }
 }
@@ -330,17 +386,17 @@
     margin-top: 0 !important;
     &:before {
       content: '';
-      position: absolute;
+      position: fixed;
       width: 100vw;
-      height: 100vh;
       background: #000;
       top: 0;
       z-index: -1;
       left: 50%;
       transform: translateX(-50%);
+      height: 100%;
     }
     .background {
-      top: 40vh !important;
+      // top: 40vh !important;
       height: 80vh !important;
       background-size: 200% !important;
     }
@@ -349,7 +405,7 @@
       justify-content: flex-start !important;
       align-items: center !important;
       .content-wrapper {
-        margin-top: 0px !important;
+        margin-top: 7vh !important;
       }
     }
     .main-logo {
@@ -377,7 +433,7 @@
       margin: 50px 0;
     }
     .background {
-      height: 2400px !important;
+      // height: 2400px !important;
     }
   }
   .input-pair {
@@ -392,7 +448,7 @@
 }
 
 @media (max-width: 375px) {
-  .main-logo {
+  .block-1 .main-logo {
     .top {
       .big {
         font-size: 50px !important;

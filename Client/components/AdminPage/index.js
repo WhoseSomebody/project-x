@@ -6,6 +6,7 @@ import {
   deleteParticipant
 } from '../../services/participants-service';
 import AddNewParticipantForm from '../AddNewParticipantForm';
+import ReactModal from 'react-modal';
 
 export class AdminPage extends Component {
   constructor() {
@@ -15,7 +16,9 @@ export class AdminPage extends Component {
       pages: 1,
       limit: 12,
       participants: [],
-      loading: true
+      loading: true,
+      isModalOpen: false,
+      image: {}
     };
   }
 
@@ -39,6 +42,10 @@ export class AdminPage extends Component {
   removeParticipant = participant => {
     deleteParticipant(participant).then(() => {
       this.loadParticipants();
+      this.setState({
+        participantToRemove: null,
+        isModalOpen: false
+      });
     });
   };
 
@@ -46,6 +53,13 @@ export class AdminPage extends Component {
     const { selected } = data;
     this.setState({ page: selected + 1 }, () => {
       this.loadParticipants();
+    });
+  };
+
+  handleRemoveRequest = participantToRemove => {
+    this.setState({
+      isModalOpen: true,
+      participantToRemove
     });
   };
 
@@ -65,12 +79,52 @@ export class AdminPage extends Component {
               participants={this.state.participants}
               handlePageClick={this.handlePageClick}
               pagesCount={this.state.pages}
-              onRemove={this.removeParticipant}
+              onRemove={this.handleRemoveRequest}
+              // onRemovePopupOpen={this.setState({ isModalOpen: true })}
               showDetails
               loading={this.state.loading}
             />
           </div>
         </div>
+        <ReactModal
+          className="Modal delete-modal"
+          overlayClassName="Overlay"
+          isOpen={this.state.isModalOpen}
+          onRequestClose={() =>
+            this.setState({
+              isModalOpen: false
+            })
+          }
+          ariaHideApp={false}
+          shouldCloseOnOverlayClick
+          shouldCloseOnEsc
+          style={{
+            zIndex: 11,
+            transition: 'width 0.1s linear'
+          }}
+        >
+          <h3 className="delete-message">Вы уверены, что хотите безвозвратно удалить участника?</h3>
+          <div className="row">
+            <a
+              className="button button-inverse m-auto"
+              onClick={() =>
+                this.setState({
+                  isModalOpen: false
+                })
+              }
+            >
+              Отмена
+            </a>
+            <a
+              className="button button-main m-auto"
+              onClick={() =>
+                this.removeParticipant(this.state.participantToRemove)
+              }
+            >
+              Удалить
+            </a>
+          </div>
+        </ReactModal>
       </div>
     );
   }

@@ -1,7 +1,7 @@
 /* eslint-disable  react/no-unescaped-entities */
 import React, { Component } from 'react';
 import ModalVideo from 'react-modal-video';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 // import Parallax from 'parallax-js';
 import FeedbackForm from '../FeedbackForm';
 
@@ -24,6 +24,11 @@ export default class MainPage extends Component {
 
     document.getElementById('wrapper').className =
       document.getElementById('wrapper').className + ' main-page';
+
+    document.getElementById('body').className = 'black-background';
+  }
+  componentWillUnmount() {
+    document.getElementById('body').className = '';
   }
   render() {
     return (
@@ -86,75 +91,98 @@ export default class MainPage extends Component {
           </div>
         </div> */}
         <div className="block-2 row">
+          <div className="background" />
           <div className="col col-md-4 col-12">
             <div className="big-x" />
           </div>
           <div className="reason col col-md-8 col-12">
             <div className="paragraph">
-              Главная цель проекта -{' '}
-              <span className="bold">дать возможность</span> сотням талантливых
-              и сильных парней и девушек заявить о себе и получить возможность
-              <span className="bold"> стать частью команды RD!</span>
+              Road to the Dream Workout Championship - это главный турнир по
+              воркауту в СНГ, цель которого дать возможность каждому выйти на
+              поле битвы и доказать что он номер один в своем деле!
+            </div>
+            <div className="paragraph border-transparent">
+              Сразись с лучшими за звание чемпиона, большой призовой фонд и
+              возможность стать атлетом Road to the Dream вдохновляя окружающих
+              своим примером!
             </div>
           </div>
         </div>
         <div className="block-3 row">
           <div className="background" />
           <div className="task row">
-            <div className="col col-md-6 col-lg-5 col-12 image-wrapper">
+            <div className="col col-md-6 col-lg-4 offset-lg-1 col-12 image-wrapper">
               <div className="illustration youtube" />
             </div>
-            <div className="col col-md-6 offset-lg-2 col-lg-5 col-12">
+            <div className="col col-md-6 offset-lg-1 col-lg-6 col-12">
               <h4 className="task-name">Запиши видео</h4>
               <p>
-                Посмотри{' '}
-                <Link to="/techniques">правила, технику выполнения</Link> и
-                запиши видео своих результатов, и отправь нам используя форму с
-                низу.
+                Квалификация. Твое первое препятствие на пути к победе это
+                квалификация.
               </p>
               <p>
-                Вы должны выполнить:
-                <br />- 8 выходов силой на две руки <br />- 8 подтягиваний с
-                весом отягощения 24 кг
-                <br />- 16 отжиманий на брусьях с весом отягощения 32 кг
+                Тренируйся, становись сильнее, быстрее, выносливее для того
+                чтобы пройти квалификацию и получить свой пропуск на арену.
               </p>
             </div>
           </div>
           <div className="task row">
-            <div className="d-md-none col col-md-6 offset-lg-2 col-lg-5 col-12 image-wrapper">
+            <div className="d-md-none col col-md-6 offset-lg-1 col-lg-4 col-12 image-wrapper">
               <div className="illustration mail" />
             </div>
-            <div className="col col-md-6 col-lg-5 col-12">
+            <div className="col col-md-6 col-lg-6 col-12">
               <h4 className="task-name">Получи приглашение на батл</h4>
               <p>
-                Члены Жюри будут следить за тем, насколько "чисто" выполнены
-                упражнения участниками и отберут лучших 100 спортсменов для
-                участия в Чемпионате!
+                Чемпионат. После того как ты прошел квалификацию и получил
+                приглашение на чемпионат, настоящая битва только впереди.
+              </p>
+              <p>
+                Чемпионат - это место где соберутся лучшие атлеты всего мира,
+                чтобы показать все на что они способны с целью прорваться в ТОП
+                6 среди всех участников прошедших квалификацию.
+              </p>
+              <p>
+                Задание, которое будет на чемпионате, будет объявлено за месяц
+                до окончания квалификации, для того чтобы каждый смог
+                подготовиться к грядущему сражению!
               </p>
             </div>
-            <div className="d-none d-md-flex col col-md-6 offset-lg-2 col-lg-5 col-12 image-wrapper">
+            <div className="d-none d-md-flex col col-md-6 offset-lg-1 col-lg-4 col-12 image-wrapper">
               <div className="illustration mail" />
             </div>
           </div>
           <div className="task row">
-            <div className="col col-md-6 col-lg-5 col-12 image-wrapper">
+            <div className="col col-md-6 col-lg-4 offset-lg-1 col-12 image-wrapper">
               <div className="illustration trophy" />
             </div>
-            <div className="col col-md-6 offset-lg-2 col-lg-5 col-12">
+            <div className="col col-md-6 offset-lg-1  col-lg-6 col-12">
               <h4 className="task-name">Попади на чемпионат</h4>
               <p>
-                В конце августа в Москве состоится первый Чемпионат Road to the
-                Dream, куда будут приглашены сильнейшие участники, прошедшие
-                отбор на сайте!
-                <br />В рамках Чемпионата будет:
-                <br />- Шоу-программа
-                <br />- Конкурсы
-                <br />- Соревнования по экстремальным видам спорта
+                Битва. Спустя месяц после чемпионата, ТОП 6 победителей
+                соберутся вновь, чтобы сразиться за главный приз. Случайным
+                образом будет образовано 3 пары, для битвы 1 на 1, чтобы узнать
+                лучшего в каждой паре!
+              </p>
+              <p>
+                Призы: <br />
+                Чемпионат: <br />1 место: 50 000 рублей (квалификация на Битву){' '}
+                <br />2 место: 30 000 рублей (квалификация на Битву) <br />3
+                место: 20 000 рублей (квалификация на Битву) <br />4 место: 10
+                000 рублей (квалификация на Битву) <br />5 место: 10 000 рублей
+                (квалификация на Битву) <br />6 место: 10 000 рублей
+                (квалификация на Битву) <br />
+              </p>
+              <p>
+                Битва: <br />
+                Победитель Пары: 100 000 рублей + контракт атлета Road to the
+                Dream
               </p>
             </div>
           </div>
         </div>
         <div className="block-4 row" id="block-4">
+          <div className="background" />
+
           <div className="col col-12 form-wrapper">
             <FeedbackForm />
           </div>

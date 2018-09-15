@@ -53,16 +53,8 @@ class EmailManager {
           <td>${fields.email}</td>
         </tr>
         <tr>
-          <td>Подтягивания:</td>
-          <td>${fields.pullUpLink}</td>
-        </tr>
-        <tr>
-          <td>Выходы силой:</td>
-          <td>${fields.muscleUpLink}</td>
-        </tr>
-        <tr>
-          <td>Отжимания:</td>
-          <td>${fields.pushUpLink}</td>
+          <td>Квалификация:</td>
+          <td>${fields.qualificationLink}</td>
         </tr>
       </table>`, // html body
       attachments: [

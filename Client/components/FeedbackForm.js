@@ -9,29 +9,25 @@ class FeedbackForm extends Component {
   constructor(props) {
     super(props);
     Cookies.remove('emailSent'),
-    this.state = {
-      name: 'Иван',
-      surname: 'Бычара',
-      age: '22',
-      height: '183',
-      weight: '75',
-      email: 'byk.sam@mail.ru',
-      pullUpLink: 'https://www.youtube.com/watch?v=JJ44WA_eV8E',
-      muscleUpLink: 'https://www.youtube.com/watch?v=JJ44WA_eV8E',
-      pushUpLink: 'https://www.youtube.com/watch?v=JJ44WA_eV8E',
-      image: null,
-      sentSuccess: Cookies.get('emailSent'),
-      nameError: false,
-      surnameError: false,
-      ageError: false,
-      emailError: false,
-      heightError: false,
-      weightError: false,
-      pullUpLinkError: false,
-      muscleUpLinkError: false,
-      pushUpLinkError: false,
-      imageError: false
-    };
+      (this.state = {
+        name: 'Иван',
+        surname: 'Бычара',
+        age: '22',
+        height: '183',
+        weight: '75',
+        email: 'byk.sam@mail.ru',
+        qualificationLink: 'https://www.youtube.com/watch?v=JJ44WA_eV8E',
+        image: null,
+        sentSuccess: Cookies.get('emailSent'),
+        nameError: false,
+        surnameError: false,
+        ageError: false,
+        emailError: false,
+        heightError: false,
+        weightError: false,
+        qualificationLinkError: false,
+        imageError: false
+      });
   }
 
   onInputChange = (e, name, regexp) => {
@@ -58,15 +54,9 @@ class FeedbackForm extends Component {
       emailError: !RegExp(
         /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/g
       ).test(this.state.email),
-      pullUpLinkError: !RegExp(
+      qualificationLinkError: !RegExp(
         /(http[s]?:\/\/)?[^\s(["<,>]*\.[^\s[",><]*/g
-      ).test(this.state.pullUpLink),
-      muscleUpLinkError: !RegExp(
-        /(http[s]?:\/\/)?[^\s(["<,>]*\.[^\s[",><]*/g
-      ).test(this.state.muscleUpLink),
-      pushUpLinkError: !RegExp(
-        /(http[s]?:\/\/)?[^\s(["<,>]*\.[^\s[",><]*/g
-      ).test(this.state.pushUpLink),
+      ).test(this.state.qualificationLink),
       imageError: !this.state.image,
       acceptRulesError: !this.state.acceptRules
     };
@@ -86,9 +76,7 @@ class FeedbackForm extends Component {
       height,
       weight,
       email,
-      pullUpLink,
-      muscleUpLink,
-      pushUpLink,
+      qualificationLink,
       image
     } = this.state;
     if (this.validateForm()) {
@@ -100,9 +88,7 @@ class FeedbackForm extends Component {
           height,
           weight,
           email,
-          pullUpLink,
-          muscleUpLink,
-          pushUpLink,
+          qualificationLink,
           image
         })
         .then(() => {
@@ -172,10 +158,10 @@ class FeedbackForm extends Component {
                 </div>
               </div>
               <div className="row input-pair">
-                <div className="col col-lg-2 col-12">
+                <div className="col col-lg-3 col-12">
                   <div className="title">Возраст</div>
                 </div>
-                <div className="col col-lg-2 col-12">
+                <div className="col col-lg-9 col-12">
                   <div
                     className={`input-wrapper ${
                       this.state.ageError ? 'errored' : ''
@@ -188,10 +174,12 @@ class FeedbackForm extends Component {
                     />
                   </div>
                 </div>
-                <div className="col col-lg-2 col-12">
+              </div>
+              <div className="row input-pair">
+                <div className="col col-lg-3 col-12">
                   <div className="title">Рост</div>
                 </div>
-                <div className="col col-lg-2 col-12">
+                <div className="col col-lg-4 col-12">
                   <div
                     className={`input-wrapper ${
                       this.state.heightError ? 'errored' : ''
@@ -206,10 +194,10 @@ class FeedbackForm extends Component {
                     />
                   </div>
                 </div>
-                <div className="col col-lg-2 col-12">
-                  <div className="title">Вес</div>
+                <div className="col col-lg-1 col-12">
+                  <div className="title margin-top-on-small">Вес</div>
                 </div>
-                <div className="col col-lg-2 col-12">
+                <div className="col col-lg-4 col-12">
                   <div
                     className={`input-wrapper ${
                       this.state.weightError ? 'errored' : ''
@@ -251,13 +239,13 @@ class FeedbackForm extends Component {
               </div>
               <div className="row input-pair">
                 <div className="col col-lg-3 col-12">
-                  <div className="title">Подтягивания</div>
+                  <div className="title">Квалификация</div>
                   <div className="subtitle">(Ссылка на видео)</div>
                 </div>
                 <div className="col col-lg-9 col-12">
                   <div
                     className={`input-wrapper ${
-                      this.state.pullUpLinkError ? 'errored' : ''
+                      this.state.qualificationLinkError ? 'errored' : ''
                     }`}
                   >
                     <input
@@ -265,61 +253,11 @@ class FeedbackForm extends Component {
                       onChange={e =>
                         this.onInputChange(
                           e,
-                          'pullUpLink',
+                          'qualificationLink',
                           /(http[s]?:\/\/)?[^\s(["<,>]*\.[^\s[",><]*/g
                         )
                       }
-                      value={this.state.pullUpLink}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="row input-pair">
-                <div className="col col-lg-3 col-12">
-                  <div className="title">Выходы силой</div>
-                  <div className="subtitle">(Ссылка на видео)</div>
-                </div>
-                <div className="col col-lg-9 col-12">
-                  <div
-                    className={`input-wrapper ${
-                      this.state.muscleUpLinkError ? 'errored' : ''
-                    }`}
-                  >
-                    <input
-                      type="link"
-                      onChange={e =>
-                        this.onInputChange(
-                          e,
-                          'muscleUpLink',
-                          /(http[s]?:\/\/)?[^\s(["<,>]*\.[^\s[",><]*/g
-                        )
-                      }
-                      value={this.state.muscleUpLink}
-                    />
-                  </div>
-                </div>
-              </div>
-              <div className="row input-pair">
-                <div className="col col-lg-3 col-12">
-                  <div className="title">Отжимания</div>
-                  <div className="subtitle">(Ссылка на видео)</div>
-                </div>
-                <div className="col col-lg-9 col-12">
-                  <div
-                    className={`input-wrapper ${
-                      this.state.pushUpLinkError ? 'errored' : ''
-                    }`}
-                  >
-                    <input
-                      type="link"
-                      onChange={e =>
-                        this.onInputChange(
-                          e,
-                          'pushUpLink',
-                          /(http[s]?:\/\/)?[^\s(["<,>]*\.[^\s[",><]*/g
-                        )
-                      }
-                      value={this.state.pushUpLink}
+                      value={this.state.qualificationLink}
                     />
                   </div>
                 </div>

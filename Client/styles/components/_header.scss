@@ -1,8 +1,8 @@
 .header {
-  min-height: 100px;
+  min-height: 80px;
   position: relative;
   background-color: #E9EAED;
-
+  z-index: 1;
   .absoluted {
     position: absolute;
     z-index: 1;

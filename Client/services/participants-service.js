@@ -7,7 +7,7 @@ import * as axios from 'axios';
 
 // db options
 
-const baseApiUrl = 'http://192.168.0.100:8000/api';
+const baseApiUrl = 'http://0.0.0.0:8000/api';
 
 const getParticipants = ({ page, limit }) => {
   return new Promise((resolve, reject) => {
@@ -46,9 +46,7 @@ const addNew = ({
   height,
   weight,
   email,
-  pullUpLink,
-  muscleUpLink,
-  pushUpLink,
+  qualificationLink,
   image
 }) => {
   return new Promise((resolve, reject) => {
@@ -60,9 +58,7 @@ const addNew = ({
     formData.append('height', height);
     formData.append('weight', weight);
     formData.append('email', email);
-    formData.append('pullUpLink', pullUpLink);
-    formData.append('muscleUpLink', muscleUpLink);
-    formData.append('pushUpLink', pushUpLink);
+    formData.append('qualificationLink', qualificationLink);
     formData.append('photo', image, `${uuid.v1()}.jpg`);
     const config = {
       headers: {

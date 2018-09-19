@@ -37,7 +37,7 @@ export class LoginPage extends Component {
         },
         () => {
           Cookies.set('isLoggedIn', true, { expires: 1 });
-          this.props.history.push('/admin-panel');
+          window.location.replace('/admin-panel');
         }
       );
     } else {
@@ -93,7 +93,9 @@ export class LoginPage extends Component {
                     <input
                       type="password"
                       value={this.state.password}
-                      onChange={e => this.setState({ password: e.target.value })}
+                      onChange={e =>
+                        this.setState({ password: e.target.value })
+                      }
                     />
                   </div>
                 </div>

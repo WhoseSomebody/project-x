@@ -6,14 +6,14 @@ import participantsService from '../services/participants-service';
 class AddNewParticipantForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      name: 'Иван',
-      surname: 'Бычара',
-      age: '22',
-      height: '183',
-      weight: '75',
-      email: 'byk.sam@mail.ru',
-      qualificationLink: 'https://www.youtube.com/watch?v=JJ44WA_eV8E',
+    this.initialState = {
+      name: '',
+      surname: '',
+      age: '',
+      height: '',
+      weight: '',
+      email: '',
+      qualificationLink: '',
       image: null,
       sentSuccess: false,
       nameError: false,
@@ -25,13 +25,10 @@ class AddNewParticipantForm extends Component {
       qualificationLinkError: false,
       imageError: false
     };
+    this.state = { ...this.initialState };
   }
 
   onInputChange = (e, name, regexp) => {
-    console.log(
-      e.target.value.toString(),
-      RegExp(regexp).test(e.target.value.toString())
-    );
     this.setState({
       [name]: e.target.value,
       [`${name}Error`]: !RegExp(regexp).test(e.target.value.toString())
@@ -49,9 +46,9 @@ class AddNewParticipantForm extends Component {
     const errors = {
       nameError: !RegExp(/^(?!\s*$).+/g).test(this.state.name),
       surnameError: !RegExp(/^(?!\s*$).+/g).test(this.state.surname),
-      ageError: !RegExp(/^-?\d+$/g).test(this.state.age),
-      heightError: !RegExp(/^-?\d+$/g).test(this.state.height),
-      weightError: !RegExp(/^-?\d+$/g).test(this.state.weight),
+      ageError: !RegExp(/^\d+$/g).test(this.state.age),
+      heightError: !RegExp(/^\d+$/g).test(this.state.height),
+      weightError: !RegExp(/^\d+$/g).test(this.state.weight),
       emailError: !RegExp(
         /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/g
       ).test(this.state.email),
@@ -93,6 +90,7 @@ class AddNewParticipantForm extends Component {
         })
         .then(() => {
           this.setState({
+            ...this.initialState,
             sentSuccess: true
           });
           this.props.onSuccess();
@@ -158,7 +156,7 @@ class AddNewParticipantForm extends Component {
                 >
                   <input
                     type="number"
-                    onChange={e => this.onInputChange(e, 'age', /^-?\d+$/g)}
+                    onChange={e => this.onInputChange(e, 'age', /^\d+$/g)}
                     value={this.state.age}
                   />
                 </div>
@@ -176,7 +174,7 @@ class AddNewParticipantForm extends Component {
                 >
                   <input
                     type="number"
-                    onChange={e => this.onInputChange(e, 'height', /^-?\d+$/g)}
+                    onChange={e => this.onInputChange(e, 'height', /^\d+$/g)}
                     value={this.state.height}
                   />
                 </div>
@@ -192,7 +190,7 @@ class AddNewParticipantForm extends Component {
                 >
                   <input
                     type="number"
-                    onChange={e => this.onInputChange(e, 'weight', /^-?\d+$/g)}
+                    onChange={e => this.onInputChange(e, 'weight', /^\d+$/g)}
                     value={this.state.weight}
                   />
                 </div>

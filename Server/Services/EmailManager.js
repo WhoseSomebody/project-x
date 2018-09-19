@@ -21,7 +21,7 @@ class EmailManager {
     console.log(fields);
     let mailOptions = {
       from: `"Project X" ${fields.email}` , // sender address
-      to: 'whosesomebody@gmail.com', // list of receivers
+      to: 'rdchampionship@gmail.com', // list of receivers
       subject: 'Новый участник Project X', // Subject line
       // text: JSON.stringify(fields), // plain text body
       // html: `<b>${JSON.stringify(fields)}</b>`, // html body

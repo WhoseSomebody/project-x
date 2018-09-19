@@ -8,26 +8,26 @@ import feedbackService from '../services/feedback-service';
 class FeedbackForm extends Component {
   constructor(props) {
     super(props);
-    Cookies.remove('emailSent'),
-      (this.state = {
-        name: 'Иван',
-        surname: 'Бычара',
-        age: '22',
-        height: '183',
-        weight: '75',
-        email: 'byk.sam@mail.ru',
-        qualificationLink: 'https://www.youtube.com/watch?v=JJ44WA_eV8E',
-        image: null,
-        sentSuccess: Cookies.get('emailSent'),
-        nameError: false,
-        surnameError: false,
-        ageError: false,
-        emailError: false,
-        heightError: false,
-        weightError: false,
-        qualificationLinkError: false,
-        imageError: false
-      });
+    this.initialState = {
+      name: '',
+      surname: '',
+      age: '',
+      height: '',
+      weight: '',
+      email: '',
+      qualificationLink: '',
+      image: null,
+      sentSuccess: Cookies.get('emailSent'),
+      nameError: false,
+      surnameError: false,
+      ageError: false,
+      emailError: false,
+      heightError: false,
+      weightError: false,
+      qualificationLinkError: false,
+      imageError: false
+    };
+    Cookies.remove('emailSent'), (this.state = { ...this.initialState });
   }
 
   onInputChange = (e, name, regexp) => {
@@ -48,9 +48,9 @@ class FeedbackForm extends Component {
     const errors = {
       nameError: !RegExp(/^(?!\s*$).+/g).test(this.state.name),
       surnameError: !RegExp(/^(?!\s*$).+/g).test(this.state.surname),
-      ageError: !RegExp(/^[0-9]*$/g).test(this.state.age),
-      heightError: !RegExp(/^[0-9]*$/g).test(this.state.height),
-      weightError: !RegExp(/^[0-9]*$/g).test(this.state.weight),
+      ageError: !RegExp(/^\d+$/g).test(this.state.age),
+      heightError: !RegExp(/^\d+$/g).test(this.state.height),
+      weightError: !RegExp(/^\d+$/g).test(this.state.weight),
       emailError: !RegExp(
         /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/g
       ).test(this.state.email),
@@ -67,6 +67,8 @@ class FeedbackForm extends Component {
     });
     return !failed;
   };
+
+  clearForm = () => this.setState({ ...this.initialState });
 
   onSubmit = () => {
     const {
@@ -93,6 +95,7 @@ class FeedbackForm extends Component {
         })
         .then(() => {
           this.setState({
+            ...this.initialState,
             sentSuccess: true
           });
           Cookies.set('emailSent', true, { expires: 1 });
@@ -169,7 +172,7 @@ class FeedbackForm extends Component {
                   >
                     <input
                       type="number"
-                      onChange={e => this.onInputChange(e, 'age', /^[0-9]*$/g)}
+                      onChange={e => this.onInputChange(e, 'age', /^\d+$/g)}
                       value={this.state.age}
                     />
                   </div>
@@ -187,9 +190,7 @@ class FeedbackForm extends Component {
                   >
                     <input
                       type="number"
-                      onChange={e =>
-                        this.onInputChange(e, 'height', /^[0-9]*$/g)
-                      }
+                      onChange={e => this.onInputChange(e, 'height', /^\d+$/g)}
                       value={this.state.height}
                     />
                   </div>
@@ -205,9 +206,7 @@ class FeedbackForm extends Component {
                   >
                     <input
                       type="number"
-                      onChange={e =>
-                        this.onInputChange(e, 'weight', /^[0-9]*$/g)
-                      }
+                      onChange={e => this.onInputChange(e, 'weight', /^\d+$/g)}
                       value={this.state.weight}
                     />
                   </div>

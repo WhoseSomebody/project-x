@@ -11,7 +11,7 @@
       align-items: flex-start;
       flex-direction: column;
       .content-wrapper {
-        position: absolute;
+        position: fixed;
         margin-top: 100px;
         display: flex;
         flex: 1;

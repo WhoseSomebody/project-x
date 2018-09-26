@@ -14,9 +14,9 @@ export default class App extends Component {
     super();
 
     this.state = {
-      title: 'React Starter',
+      title: 'Dream Workout Championship',
       description:
-        'A basic template that consists of the essential elements that are required to start building a React application'
+        'Главный турнир по воркауту в СНГ, цель которого дать возможность каждому выйти на поле битвы и доказать что он номер один в своем деле!'
     };
   }
 

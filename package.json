@@ -10,7 +10,8 @@
     "serve": "webpack -d && live-server ./Client/public",
     "serve:dev": "webpack-dev-server --open",
     "serve:api": "node ./Server/server.js",
-    "test": "echo \"No tests available\" && exit 1"
+    "test": "echo \"No tests available\" && exit 1",
+    "heroku-postbuild": "npm install && npm run serve"
   },
   "license": "MIT",
   "babel": {

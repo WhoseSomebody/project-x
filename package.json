@@ -9,7 +9,7 @@
     "lint:fix": "eslint . --fix",
     "serve": "webpack -d && live-server ./Client/public",
     "serve:dev": "webpack-dev-server --open",
-    "serve:api": "node ./Server/server.js",
+    "serve:api": "nodemon ./Server/server.js",
     "test": "echo \"No tests available\" && exit 1"
   },
   "license": "MIT",

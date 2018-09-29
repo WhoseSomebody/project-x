@@ -4,6 +4,7 @@
   "description": "A basic note application that uses React frontend to capture and manage notes, an api written in ExpressJS, and mongodb to store notes",
   "scripts": {
     "build": "webpack -d", 
+    "start:prod": "nodemon ./Client/server",
     "build:watch": "webpack --watch",
     "lint": "eslint .; exit 0",
     "lint:fix": "eslint . --fix",

@@ -5,7 +5,7 @@ const assert = require('assert');
 const fs = require('fs');
 const participantsRepository = new ParticipantsRepository();
 
-const hostAddress = 'https://project-x-2018-frontend.herokuapp.com';
+const hostAddress = 'https://project-x-backend.herokuapp.com/';
 
 class ParticipantManager {
   addParticipant(fields) {

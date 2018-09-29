@@ -1,1 +1,1 @@
-web: npm run serve:api
+web: mkdir -p photos && npm run serve:api

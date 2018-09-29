@@ -6,7 +6,7 @@ import * as axios from 'axios';
 
 // db options
 
-const baseApiUrl = 'http://0.0.0.0:8000/api';
+const baseApiUrl = 'https://project-x-backend.herokuapp.com/api';
 
 const sendFeedback = ({
   name,

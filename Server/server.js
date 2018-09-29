@@ -16,8 +16,8 @@ const server = express();
 
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
-// server.use('/photos', express.static(process.cwd() + '/photos'));
-server.use(express.static(__dirname + '/photos'));
+server.use('/photos', express.static(process.cwd() + '/photos'));
+// server.use(express.static(__dirname + '/photos'));
 server.use(cors());
 server.use(morgan('combined'));
 server.use('/api', notesRouter(PORT));

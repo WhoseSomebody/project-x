@@ -48,51 +48,16 @@ export default class MainPage extends Component {
                 </div>
                 <div className="bottom">WORKOUT CHAMPIONSHIP</div>
               </div>
-              <div className="venok" />
+              {/* <div className="venok" /> */}
               <a href="#block-4" className="button button-main">
                 Принять вызов!
               </a>
             </div>
           </div>
         </div>
-        {/* <div className="block-1 row">
-          <div className="col col-md-4 col-12">
-            <h1>Проект Х</h1>
-            <h4>Ты. Новый. Лучший.</h4>
-            <a href="#" className="button button-main">
-              Принять вызов!
-            </a>
-          </div>
-          <div className="col col-md-4 col-12">
-            <div className="man-image" />
-            <a onClick={this.openModal} className="video-trigger" />
-          </div>
-          <div className="col col-md-4 col-12">
-            <div className="info">
-              <h4>Подача заявки на участие:</h4>
-              <div className="date">
-                <div className="day">1-31</div>
-                <h2 className="month">сентября</h2>
-              </div>
-            </div>
-            <div className="info">
-              <h4>Чемпионат по street workout:</h4>
-              <div className="date">
-                <div className="day">7</div>
-                <h2 className="month">октября</h2>
-              </div>
-            </div>
-          </div>
-          <div data-relative-input="true" id="scene" className="parallax">
-            <div data-depth="0.1" className="Black" />
-            <div data-depth="0.3" className="Gray" />
-            <div data-depth="0.5" className="White" />
-            <div data-depth="0.7" className="Violet" />
-          </div>
-        </div> */}
         <div className="block-2 row">
           <div className="background" />
-          <div className="col col-md-4 col-12">
+          <div className="col col-md-4 col-12 offset-lg-1 col-lg-3">
             <div className="big-x" />
           </div>
           <div className="reason col col-md-8 col-12">
@@ -133,8 +98,8 @@ export default class MainPage extends Component {
             <div className="col col-md-6 col-lg-6 col-12">
               <h4 className="task-name">Получи приглашение на батл</h4>
               <p>
-                Чемпионат. После того как ты прошел квалификацию и получил
-                приглашение на чемпионат, настоящая битва только впереди.
+                После того как ты прошел квалификацию и получил приглашение на
+                чемпионат, настоящая битва только впереди.
               </p>
               <p>
                 Чемпионат - это место где соберутся лучшие атлеты всего мира,
@@ -158,25 +123,34 @@ export default class MainPage extends Component {
             <div className="col col-md-6 offset-lg-1  col-lg-6 col-12">
               <h4 className="task-name">Попади на чемпионат</h4>
               <p>
-                Битва. Спустя месяц после чемпионата, ТОП 6 победителей
-                соберутся вновь, чтобы сразиться за главный приз. Случайным
-                образом будет образовано 3 пары, для битвы 1 на 1, чтобы узнать
-                лучшего в каждой паре!
+                Спустя месяц после чемпионата, ТОП 6 победителей соберутся
+                вновь, чтобы сразиться за главный приз. Случайным образом будет
+                образовано 3 пары, для битвы 1 на 1, чтобы узнать лучшего в
+                каждой паре!
               </p>
+            </div>
+          </div>
+          <div className="task row">
+            <div className="d-md-none col col-md-6 offset-lg-1 col-lg-4 col-12 image-wrapper">
+              <div className="illustration piedistal" />
+            </div>
+            <div className="col col-md-6 col-lg-6 col-12">
+              <h4 className="task-name">Забери свой приз</h4>
               <p>
-                Призы: <br />
-                Чемпионат: <br />1 место: 50 000 рублей (квалификация на Битву){' '}
-                <br />2 место: 30 000 рублей (квалификация на Битву) <br />3
-                место: 20 000 рублей (квалификация на Битву) <br />4 место: 10
-                000 рублей (квалификация на Битву) <br />5 место: 10 000 рублей
-                (квалификация на Битву) <br />6 место: 10 000 рублей
-                (квалификация на Битву) <br />
+                Чемпионат: (квалификация на Битву) <br />1 место: 50 000 рублей{' '}
+                <br />2 место: 30 000 рублей <br />3 место: 20 000 рублей <br />
+                4 место: 10 000 рублей <br />5 место: 10 000 рублей <br />6
+                место: 10 000 рублей <br />
               </p>
+
               <p>
                 Битва: <br />
                 Победитель Пары: 100 000 рублей + контракт атлета Road to the
                 Dream
               </p>
+            </div>
+            <div className="d-none d-md-flex col col-md-6 offset-lg-1 col-lg-4 col-12 image-wrapper">
+              <div className="illustration piedistal" />
             </div>
           </div>
         </div>

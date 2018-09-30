@@ -36,7 +36,7 @@ class AddNewParticipantForm extends Component {
   };
 
   receiveImage = file => {
-    console.log(file);
+    // console.log(file);
     this.setState({
       image: file
     });

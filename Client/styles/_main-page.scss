@@ -214,7 +214,7 @@
       width: 220px;
       background-image: url('../assets/X@2x.png');
       background-position: center;
-      background-size: 100%;
+      background-size: contain;
       background-repeat: no-repeat;
     }
   }
@@ -296,6 +296,12 @@
             height: 270px;
             width: 350px;
           }
+          &.piedistal {
+            background-image: url('../assets/rules copy 3@2x.png');
+            height: 251px;
+            width: 450px;
+            max-width: 100%;
+          }
         }
       }
     }
@@ -326,6 +332,12 @@
   }
 }
 @media (max-width: 992px) {
+  .techniques-page .video-wrapper {
+    margin-bottom: 0 !important;
+  }
+  .feedback-form:after {
+    display: none;
+  }
   .margin-top-on-small {
     margin-top: 20px;
   }
@@ -334,7 +346,8 @@
   }
   .block-2 {
     .big-x {
-      margin: 20px auto !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
     }
     .paragraph {
       margin: auto;
@@ -375,6 +388,12 @@
   }
 }
 @media (max-width: 692px) {
+  .feedback-form .input-pair {
+    margin: 0 -10px !important;
+  }
+  .container {
+    padding: 0 30px;
+  }
   .header,
   .sm-none {
     display: none !important;
@@ -427,6 +446,9 @@
     .venok {
       display: none;
     }
+  }
+  .main-page .block-2 .background {
+    min-height: 1100px;
   }
   .block-3 {
     .task {

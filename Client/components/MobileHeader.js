@@ -5,7 +5,7 @@ import { slide as Menu } from 'react-burger-menu';
 
 const Header = props => {
   return (
-    <Menu>
+    <Menu customCrossIcon={<div />} width={'100vw'}>
       <ul className="mobile-menu-list">
         <li className={`menu-item ${props.match.path === '/' ? 'active' : ''}`}>
           <Link to="/">Главная</Link>
@@ -25,6 +25,17 @@ const Header = props => {
           <Link to="/techniques">Техника выполнения</Link>
         </li>
       </ul>
+      <div className="main-logo">
+        <div className="top">
+          <span className="big">ROAD</span>
+          <span className="middle">
+            <div>TO</div>
+            <div>THE</div>
+          </span>
+          <span className="big">DREAM</span>
+        </div>
+        <div className="bottom">WORKOUT CHAMPIONSHIP</div>
+      </div>
     </Menu>
   );
 };

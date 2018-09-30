@@ -17,9 +17,13 @@ class ParticipantManager {
       weight,
       email,
       qualificationLink,
-      image
+      photoBase64,
+      // image
     } = fields;
-    const imageUrl = hostAddress + '/photos/' + image.name;
+    // console.log(typeof image);
+    // const imageUrl = hostAddress + '/photos/' + image.name;
+    // const imageUrl = image.path;
+    const imageUrl = photoBase64;
     // assert(title, 'Title is required');
     // assert(content, 'Content is required');
 

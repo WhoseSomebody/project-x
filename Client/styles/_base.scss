@@ -327,7 +327,11 @@ a {
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
-  background: #373a47;
+  background: #272727;
+  opacity: 1 !important;
+  &:last-of-type {
+    width: 70%;
+  }
 }
 
 /* Position and sizing of clickable cross button */

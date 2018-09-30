@@ -7,11 +7,13 @@ import * as axios from 'axios';
 
 // db options
 
-const baseApiUrl = 'https://project-x-backend.herokuapp.com/api';
+// const baseApiUrl = 'https://project-x-backend.herokuapp.com/api';
+const baseApiUrl = 'http://localhost:8000/api';
 
 const getParticipants = ({ page, limit }) => {
   return new Promise((resolve, reject) => {
-    const url = `${baseApiUrl}/list-participants?page=${page || ''}&limit=${limit || ''}`;
+    const url = `${baseApiUrl}/list-participants?page=${page ||
+      ''}&limit=${limit || ''}`;
     return axios
       .get(url)
       .then(result => {
@@ -24,7 +26,7 @@ const getParticipants = ({ page, limit }) => {
   });
 };
 
-const deleteParticipant = (participant) => {
+const deleteParticipant = participant => {
   return new Promise((resolve, reject) => {
     const url = `${baseApiUrl}/participant/${participant._id}`;
     return axios
@@ -60,20 +62,28 @@ const addNew = ({
     formData.append('email', email);
     formData.append('qualificationLink', qualificationLink);
     formData.append('photo', image, `${uuid.v1()}.jpg`);
+
     const config = {
       headers: {
         'content-type': 'multipart/form-data'
       }
     };
-    return axios
-      .post(url, formData, config)
-      .then(result => {
-        resolve(result.data);
-      })
-      .catch(error => {
-        console.log(error);
-        reject(error.message);
-      });
+
+    var reader = new FileReader();
+    reader.onload = function(event) {
+      // console.log(event.target.result); //event.target.results contains the base64 code to create the image.
+      formData.append('photoBase64', event.target.result);
+      return axios
+        .post(url, formData, config)
+        .then(result => {
+          resolve(result.data);
+        })
+        .catch(error => {
+          console.log(error);
+          reject(error.message);
+        });
+    };
+    reader.readAsDataURL(image); //Convert the blob from clipboard to base64
   });
 };
 

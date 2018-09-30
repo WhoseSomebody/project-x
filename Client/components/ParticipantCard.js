@@ -8,7 +8,10 @@ export class ParticipantCard extends Component {
     if (showDetails)
       Popup.plugins().popover(
         <div>
-          <div> Имя: {participant.name} {participant.surname}</div>
+          <div>
+            {' '}
+            Имя: {participant.name} {participant.surname}
+          </div>
           <div> Возраст: {participant.age}</div>
           <div> Рост: {participant.height}</div>
           <div> Вес: {participant.weight}</div>
@@ -42,7 +45,10 @@ export class ParticipantCard extends Component {
         }}
       >
         {onRemove && (
-          <button className="remove-button" onClick={() => onRemove(participant)}>
+          <button
+            className="remove-button"
+            onClick={() => onRemove(participant)}
+          >
             ✕
           </button>
         )}
@@ -50,15 +56,35 @@ export class ParticipantCard extends Component {
           <img src={participant.imageUrl} alt="" />
         </div>
         <div className="card-borrom">
-          <h3 className="card-name">{participant.name} {participant.surname}</h3>
+          <h3 className="card-name">
+            {participant.name} {participant.surname}
+          </h3>
           <div className="card-details">
-            {participant.age} лет / {participant.weight} кг /{' '}
+            {participant.age} {text(participant.age)} / {participant.weight} кг /{' '}
             {participant.height} см
           </div>
         </div>
       </div>
     );
   }
+}
+
+function text(age) {
+  let txt;
+  let count = age % 100;
+  if (count >= 5 && count <= 20) {
+    txt = 'лет';
+  } else {
+    count = count % 10;
+    if (count == 1) {
+      txt = 'год';
+    } else if (count >= 2 && count <= 4) {
+      txt = 'года';
+    } else {
+      txt = 'лет';
+    }
+  }
+  return txt;
 }
 
 ParticipantCard.propTypes = {

@@ -71,6 +71,9 @@ class AvatarUpdater extends React.Component {
           src: file
         }
       });
+      
+
+  
       this.props.onImageSelect(file);
     });
 

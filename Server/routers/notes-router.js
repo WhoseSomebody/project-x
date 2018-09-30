@@ -36,6 +36,7 @@ const notesRouter = () => {
         })
         .on('fileBegin', function(name, file) {
           file.path = process.cwd() + '/photos/' + file.name;
+          // file.path = file.toString('base64');
         })
         .on('file', function(name, file) {
           formFields.image = file;

@@ -2,10 +2,10 @@
 
 const ParticipantsRepository = require('../DataAccess/ParticipantsRepository');
 const assert = require('assert');
-const fs = require('fs');
+// const fs = require('fs');
 const participantsRepository = new ParticipantsRepository();
 
-const hostAddress = 'http://0.0.0.0:8000';
+// const hostAddress = 'http://0.0.0.0:8000';
 
 class ParticipantManager {
   addParticipant(fields) {

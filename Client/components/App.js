@@ -9,6 +9,22 @@ import LoginPage from './LoginPage';
 import AdminPage from './AdminPage';
 import Header from './Header';
 import MobileHeader from './MobileHeader';
+
+const isPathNotFound = path => {
+  if (
+    path !== '/' &&
+    path !== '/participants' &&
+    path !== '/techniques' &&
+    path !== '/login' &&
+    path !== '/admin-panel'
+  ) {
+    return <Redirect to="/" />;
+  } else {
+    return <div />;
+  }
+};
+
+
 export default class App extends Component {
   constructor() {
     super();
@@ -27,8 +43,7 @@ export default class App extends Component {
         render={props => {
           return (
             <div className="contentWrapper" id="wrapper">
-              
-              <MobileHeader {...props}/>
+              <MobileHeader {...props} />
               <Header {...props} />
               <Component {...props} />
               <Popup />
@@ -69,6 +84,7 @@ export default class App extends Component {
                 : () => <Redirect to="/login" />
             }
           />
+          <Route component={props => isPathNotFound(props.location.pathname)} />
         </div>
       </Router>
     );

@@ -28,26 +28,18 @@ const notesRouter = () => {
     })
     .post('/participant', (req, res) => {
       var form = new formidable.IncomingForm();
-      let formFields = {};
-      return form
-        .parse(req)
-        .on('field', function(name, val) {
-          formFields[name] = val;
-        })
-        .on('fileBegin', function(name, file) {
-          file.path = process.cwd() + '/photos/' + file.name;
-          // file.path = file.toString('base64');
-        })
-        .on('file', function(name, file) {
-          formFields.image = file;
-          return particiantsManager
-            .addParticipant(formFields)
-            .then(id => res.status(201).send({ id: id }))
-            .catch(error => {
-              console.log(error);
-              res.status(500).send(error);
-            });
-        });
+      // let formFields = {};
+      return form.parse(req, function(err, fields) {
+        if (err) res.status(500).send(err);
+
+        return particiantsManager
+          .addParticipant(fields)
+          .then(id => res.status(201).send({ id: id }))
+          .catch(error => {
+            console.log(error);
+            res.status(500).send(error);
+          });
+      });
     })
     .delete('/participant/:id', (req, res) => {
       const { id } = req.params;

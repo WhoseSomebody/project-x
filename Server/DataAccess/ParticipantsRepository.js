@@ -27,10 +27,8 @@ class ParticipantsRepository {
       connection
         .open()
         .then(() => {
-          console.log('connection', connection);
-          console.log('participant', participant);
           connection.Db.collection(collection)
-            .insertOne(participant)
+            .insertOne({ ...participant, updated_date: Date.now() })
             .then(result => {
               connection.close();
               resolve({ id: result.insertedId });

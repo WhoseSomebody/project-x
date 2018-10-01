@@ -375,7 +375,10 @@
 @media (max-width: 768px) {
   .block-3 {
     .task {
-      margin: 50px 0;
+      margin: 50px 0 0 0 !important;
+      .illustration {
+        margin-bottom: 30px !important;
+      }
     }
     .background {
       // height: 2900px !important;
@@ -451,11 +454,14 @@
     min-height: 1100px;
   }
   .block-3 {
-    .task {
-      margin: 50px 0;
-    }
     .background {
       // height: 2400px !important;
+      height: 96.5% !important;
+      top: 0% !important;
+      &:before {
+        top: -151px !important;
+        background-size: 800px !important;
+      }
     }
   }
   .input-pair {

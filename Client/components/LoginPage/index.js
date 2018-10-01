@@ -52,9 +52,9 @@ export class LoginPage extends Component {
       <div className="login-page">
         <div data-relative-input="true" id="scene" className="parallax">
           <div data-depth="0.1" className="Black" />
-          <div data-depth="0.3" className="Gray" />
-          <div data-depth="0.5" className="White" />
-          <div data-depth="0.7" className="Violet" />
+          <div data-depth="0.15" className="Gray" />
+          <div data-depth="0.2" className="White" />
+          <div data-depth="0.25" className="Violet" />
         </div>
         <div className="login-card">
           <div className="login-card-header">

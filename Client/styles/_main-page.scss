@@ -391,6 +391,10 @@
   }
 }
 @media (max-width: 692px) {
+  .row.row-1 {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
   .feedback-form .input-pair {
     margin: 0 -10px !important;
   }
@@ -420,14 +424,16 @@
     .background {
       // top: 40vh !important;
       height: 80vh !important;
-      background-size: 200% !important;
+      background-size: 100vh !important;
     }
     .col {
       margin-top: 50px;
       justify-content: flex-start !important;
       align-items: center !important;
       .content-wrapper {
-        margin-top: 7vh !important;
+        margin-top: 0 !important;
+        height: 35vh;
+        min-height: 160px;
       }
     }
     .main-logo {
@@ -446,8 +452,8 @@
         line-height: 4px !important;
       }
     }
-    .venok {
-      display: none;
+    .button {
+      margin: 10px 0 !important;
     }
   }
   .main-page .block-2 .background {

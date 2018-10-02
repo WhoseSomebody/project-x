@@ -173,6 +173,7 @@ export default class MainPage extends Component {
           <div className="background" />
 
           <div className="col col-12 form-wrapper">
+            <h3 className="centered">ФОРМА ОТПРАВКИ</h3>
             <FeedbackForm />
           </div>
         </div>

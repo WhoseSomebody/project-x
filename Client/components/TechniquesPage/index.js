@@ -156,7 +156,7 @@ export default class TechniquesPage extends Component {
         </div>
         <div className="block-3 row">
           <div className="col col-12 form-wrapper dark">
-            <h3 className="centered">Форма отправки</h3>
+            <h3 className="centered">ФОРМА ОТПРАВКИ</h3>
             <FeedbackForm dark />
           </div>
         </div>

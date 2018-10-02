@@ -37,6 +37,7 @@
     background-size: 1400px 900px;
     background-image: url('../assets/Gray blocks@2x.png');
   }
+
   .block-2 {
     padding-top: 130px;
     .background {
@@ -53,14 +54,14 @@
       background-size: cover;
       background-repeat: no-repeat;
     }
+    .form-wrapper .centered {
+      text-align: center;
+      width: 100%;
+    }
   }
   .main-title {
     font-size: 60px;
     margin: 100px 0 170px 0;
-  }
-  .centered {
-    text-align: center;
-    width: 100%;
   }
   .task {
     margin: 80px 0;

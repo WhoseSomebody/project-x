@@ -26,7 +26,8 @@ const Header = props => {
         </li>
       </ul>
       <div className="main-logo">
-        <div className="top">
+        <img src={require('../assets/RD logo black@2x.png')} alt="" />
+        {/* <div className="top">
           <span className="big">ROAD</span>
           <span className="middle">
             <div>TO</div>
@@ -34,7 +35,7 @@ const Header = props => {
           </span>
           <span className="big">DREAM</span>
         </div>
-        <div className="bottom">WORKOUT CHAMPIONSHIP</div>
+        <div className="bottom">WORKOUT CHAMPIONSHIP</div> */}
       </div>
     </Menu>
   );

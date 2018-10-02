@@ -137,16 +137,27 @@ export default class MainPage extends Component {
             <div className="col col-md-6 col-lg-6 col-12">
               <h4 className="task-name">Забери свой приз</h4>
               <p>
-                Чемпионат: (квалификация на Битву) <br />1 место: 50 000 рублей{' '}
-                <br />2 место: 30 000 рублей <br />3 место: 20 000 рублей <br />
-                4 место: 10 000 рублей <br />5 место: 10 000 рублей <br />6
-                место: 10 000 рублей <br />
+                Чемпионат: (квалификация на Битву) <br />
+                <span className="accented">1</span> место:{' '}
+                <span className="accented">50 000</span> рублей <br />
+                <span className="accented">2</span> место:{' '}
+                <span className="accented">30 000</span> рублей <br />
+                <span className="accented">3</span> место:{' '}
+                <span className="accented">20 000</span> рублей <br />
+                <span className="accented">4</span> место:{' '}
+                <span className="accented">10 000</span> рублей <br />
+                <span className="accented">5</span> место:{' '}
+                <span className="accented">10 000</span> рублей <br />
+                <span className="accented">6</span> место:{' '}
+                <span className="accented">10 000</span> рублей <br />
               </p>
 
               <p>
                 Битва: <br />
-                Победитель Пары: 100 000 рублей + контракт атлета Road to the
-                Dream
+                <span className="accented">
+                  Победитель Пары: 100 000 рублей + контракт атлета Road to the
+                  Dream{' '}
+                </span>
               </p>
             </div>
             <div className="d-none d-md-flex col col-md-6 offset-lg-1 col-lg-4 col-12 image-wrapper">

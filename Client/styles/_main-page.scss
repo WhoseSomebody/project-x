@@ -80,8 +80,8 @@
       width: 100vw;
       height: 100vh;
       background: url('../assets/Picture@2x.jpg');
-      background-position: right bottom;
-      background-size: cover;
+      background-position: right center;
+      background-size: contain;
       background-repeat: no-repeat;
     }
     .button {
@@ -192,6 +192,7 @@
       flex-direction: column;
       margin-top: 100px;
       align-items: center;
+      font-family: 'Oswald', sans-serif;
       .paragraph {
         margin: auto;
         border-left: 3px solid #cd2119;
@@ -263,6 +264,7 @@
         font-size: 36px;
         line-height: 44px;
         padding-bottom: 20px;
+        text-transform: uppercase;
       }
       p {
         font-size: 18px;
@@ -270,6 +272,10 @@
         font-weight: 100;
         a {
           color: #cd2119;
+        }
+        .accented {
+          font-weight: bold;
+          font-size: 22px;
         }
       }
       .image-wrapper {
@@ -425,6 +431,7 @@
       // top: 40vh !important;
       height: 80vh !important;
       background-size: 100vh !important;
+      background-position: 78% bottom !important;
     }
     .col {
       margin-top: 50px;

@@ -332,13 +332,6 @@
       position: absolute;
       top: -70%;
     }
-
-    .form-wrapper {
-      .centered {
-        text-align: center;
-        width: 100%;
-      }
-    }
   }
 }
 
@@ -365,34 +358,36 @@
   .lg-none {
     display: none !important;
   }
-  .block-1 {
-    .content-wrapper {
-      margin-top: 30px !important;
-      left: 5vh;
+  .main-page {
+    .block-1 {
+      .content-wrapper {
+        margin-top: 30px !important;
+        left: 5vh;
+      }
+      .background {
+        background-position: 20vh center !important;
+      }
     }
-    .background {
-      background-position: 20vh center !important;
+    .block-2 {
+      .big-x {
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+      .paragraph {
+        margin: auto;
+        border-left: none !important;
+        padding-left: 0 !important;
+      }
     }
-  }
-  .block-2 {
-    .big-x {
-      margin-left: auto !important;
-      margin-right: auto !important;
+    .bordered-title {
+      border: none !important;
+      padding: 0 !important;
     }
-    .paragraph {
-      margin: auto;
-      border-left: none !important;
-      padding-left: 0 !important;
-    }
-  }
-  .bordered-title {
-    border: none !important;
-    padding: 0 !important;
-  }
-  .block-3 {
-    margin: 30% 0 !important;
-    .task {
-      margin: 80px 0;
+    .block-3 {
+      margin: 30% 0 !important;
+      .task {
+        margin: 80px 0;
+      }
     }
   }
   .bm-burger-button {
@@ -404,25 +399,37 @@
 }
 
 @media (max-width: 768px) {
-  .block-1 {
-    .content-wrapper {
-      margin-top: 30px;
-      left: 5vh;
-    }
-  }
-  .block-3 {
-    margin: 40% 0 !important;
-    .background {
-      height: 94% !important;
-    }
-    .task {
-      margin: 50px 0 0 0 !important;
-      .illustration {
-        margin-bottom: 30px !important;
+  .main-page {
+    .block-1 {
+      .content-wrapper {
+        margin-top: 30px;
+        left: 5vh;
       }
     }
-    .background {
-      // height: 2900px !important;
+    .block-3 {
+      margin: 40% 0 !important;
+      .background {
+        height: 94% !important;
+      }
+      .task {
+        margin: 50px 0 0 0 !important;
+        .illustration {
+          margin-bottom: 30px !important;
+        }
+      }
+      .background {
+        // height: 2900px !important;
+      }
+    }
+  }
+  .task {
+    .title-wrapper {
+      justify-content: center !important;
+      .bordered-title {
+        border-right: none !important;
+        text-align: center !important;
+        padding-right: 0 !important;
+      }
     }
   }
 }
@@ -449,83 +456,85 @@
   .note {
     margin-top: 100px;
   }
-  .block-1 {
-    margin-top: 0 !important;
-    &:before {
-      content: '';
-      position: fixed;
-      width: 100vw;
-      background: #000;
-      top: 0;
-      z-index: -1;
-      left: 50%;
-      transform: translateX(-50%);
-      height: 100%;
-    }
-    .background {
-      // top: 40vh !important;
-      height: 80vh !important;
-      background-size: 100vh !important;
-      background-position: 78% bottom !important;
-    }
-    .col {
-      margin-top: 50px;
-      justify-content: flex-start !important;
-      align-items: center !important;
-      .content-wrapper {
-        margin-top: 0 !important;
-        height: 35vh;
-        min-height: 160px;
-        left: initial !important;
-      }
-    }
-    .main-logo {
-      margin-bottom: 10px;
-      .top {
-        .big {
-          font-size: 60px !important;
-        }
-        .middle {
-          font-size: 29px !important;
-          line-height: 25px !important;
-        }
-      }
-      .bottom {
-        font-size: 32px !important;
-        line-height: 4px !important;
-      }
-    }
-    .button {
-      margin: 10px 0 !important;
-    }
-  }
-  .main-page .block-2 .background {
-    min-height: 1100px;
-  }
-  .block-3 {
-    margin: 55% 0 70% 0 !important;
-    .background {
-      // height: 2400px !important;
-      height: 98.5% !important;
-      top: 0% !important;
+  .main-page {
+    .block-1 {
+      margin-top: 0 !important;
       &:before {
-        top: -151px !important;
-        background-size: 800px !important;
+        content: '';
+        position: fixed;
+        width: 100vw;
+        background: #000;
+        top: 0;
+        z-index: -1;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 100%;
+      }
+      .background {
+        // top: 40vh !important;
+        height: 80vh !important;
+        background-size: 100vh !important;
+        background-position: 78% bottom !important;
+      }
+      .col {
+        margin-top: 50px;
+        justify-content: flex-start !important;
+        align-items: center !important;
+        .content-wrapper {
+          margin-top: 0 !important;
+          height: 35vh;
+          min-height: 160px;
+          left: initial !important;
+        }
+      }
+      .main-logo {
+        margin-bottom: 10px;
+        .top {
+          .big {
+            font-size: 60px !important;
+          }
+          .middle {
+            font-size: 29px !important;
+            line-height: 25px !important;
+          }
+        }
+        .bottom {
+          font-size: 32px !important;
+          line-height: 4px !important;
+        }
+      }
+      .button {
+        margin: 10px 0 !important;
       }
     }
-  }
-  .input-pair {
-    .title,
-    .subtitle {
-      text-align: left !important;
+    .main-page .block-2 .background {
+      min-height: 1100px;
     }
-  }
-  .bm-burger-button {
-    display: block;
-  }
-  .bock-4 {
-    .form-wrapper {
-      margin: 70px auto 40px auto;
+    .block-3 {
+      margin: 55% 0 70% 0 !important;
+      .background {
+        // height: 2400px !important;
+        height: 98.5% !important;
+        top: 0% !important;
+        &:before {
+          top: -151px !important;
+          background-size: 800px !important;
+        }
+      }
+    }
+    .input-pair {
+      .title,
+      .subtitle {
+        text-align: left !important;
+      }
+    }
+    .bm-burger-button {
+      display: block;
+    }
+    .bock-4 {
+      .form-wrapper {
+        margin: 70px auto 40px auto;
+      }
     }
   }
 }

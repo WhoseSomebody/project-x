@@ -41,7 +41,7 @@ export class ParticipantsList extends Component {
           {!loading &&
             (!participants || !participants.length) && (
               <div className="empty-message">
-                Список участников пока еще пустой
+                Принимаем ваши запросы на участие, стань первым участником чемпионата!
               </div>
             )}
         </div>

@@ -100,7 +100,7 @@ export default class MainPage extends Component {
               <div className="illustration mail" />
             </div>
             <div className="col col-md-6 col-lg-6 col-12">
-              <h4 className="task-name">Получи приглашение на батл</h4>
+              <h4 className="task-name">Попади на чемпионат</h4>
               <p>
                 После того как ты прошел квалификацию и получил приглашение на
                 чемпионат, настоящая битва только впереди.
@@ -125,7 +125,7 @@ export default class MainPage extends Component {
               <div className="illustration trophy" />
             </div>
             <div className="col col-md-6 offset-lg-1  col-lg-6 col-12">
-              <h4 className="task-name">Попади на чемпионат</h4>
+              <h4 className="task-name">Битва</h4>
               <p>
                 Спустя месяц после чемпионата, ТОП 6 победителей соберутся
                 вновь, чтобы сразиться за главный приз. Случайным образом будет

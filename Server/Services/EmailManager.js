@@ -53,6 +53,10 @@ class EmailManager {
           <td>${fields.email}</td>
         </tr>
         <tr>
+          <td>Номер телефона:</td>
+          <td>${fields.phone}</td>
+        </tr>
+        <tr>
           <td>Квалификация:</td>
           <td>${fields.qualificationLink}</td>
         </tr>

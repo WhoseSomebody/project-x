@@ -103,8 +103,8 @@ module.exports = {
     },
     runtimeChunk: true
   },
-  // devtool: 'nosources-source-map',
-  devtool: 'eval',
+  devtool: 'nosources-source-map',
+  // devtool: 'eval',
   devServer: {
     contentBase: path.resolve(__dirname, 'public'),
     historyApiFallback: true,

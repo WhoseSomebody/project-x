@@ -9,7 +9,7 @@ export default class MainPage extends Component {
   constructor() {
     super();
     this.state = {
-      isOpen: false
+      isOpen: false,
     };
     this.openModal = this.openModal.bind(this);
   }
@@ -180,8 +180,8 @@ export default class MainPage extends Component {
 
         <ModalVideo
           channel="youtube"
-          isOpen={this.state.isOpen}
           videoId="L61p2uyiMSo"
+          isOpen={this.state.isOpen}
           onClose={() => this.setState({ isOpen: false })}
         />
       </div>

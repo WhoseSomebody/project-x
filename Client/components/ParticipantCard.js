@@ -21,14 +21,10 @@ export class ParticipantCard extends Component {
             <a href={`mailto:${participant.email}`}>{participant.email}</a>
           </div>
           <div>
-            Подтягивания: <a href={participant.pullUp}>{participant.pullUp}</a>
+            Номер телефона:{' '}{participant.phone}
           </div>
           <div>
-            Выходы силой:
-            <a href={participant.muscleUp}>{participant.muscleUp}</a>
-          </div>
-          <div>
-            Отжимания: <a href={participant.pushUp}>{participant.pushUp}</a>
+            Квалификация: <a href={participant.qualificationLink}>{participant.qualificationLink}</a>
           </div>
         </div>,
         this.details

@@ -1,9 +1,12 @@
+/* eslint-disable no-useless-escape*/
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import ru from 'react-phone-number-input/locale/ru';
+import PhoneInput from 'react-phone-number-input';
 import AvatarUpdater from '../components/AvatarUpdater';
 import feedbackService from '../services/feedback-service';
+import RulesModal from './RulesModal';
 
 class FeedbackForm extends Component {
   constructor(props) {
@@ -15,6 +18,7 @@ class FeedbackForm extends Component {
       height: '',
       weight: '',
       email: '',
+      phone: '',
       qualificationLink: '',
       image: null,
       sentSuccess: Cookies.get('emailSent'),
@@ -25,7 +29,8 @@ class FeedbackForm extends Component {
       heightError: false,
       weightError: false,
       qualificationLinkError: false,
-      imageError: false
+      imageError: false,
+      areRulesOpen: false
     };
     Cookies.remove('emailSent'), (this.state = { ...this.initialState });
   }
@@ -51,6 +56,9 @@ class FeedbackForm extends Component {
       ageError: !RegExp(/^\d+$/g).test(this.state.age),
       heightError: !RegExp(/^\d+$/g).test(this.state.height),
       weightError: !RegExp(/^\d+$/g).test(this.state.weight),
+      phoneError: !RegExp(
+        /(([+][(]?[0-9]{1,3}[)]?)|([(]?[0-9]{4}[)]?))\s*[)]?[-\s\.]?[(]?[0-9]{1,3}[)]?([-\s\.]?[0-9]{3})([-\s\.]?[0-9]{3,4})/g
+      ).test(this.state.weight),
       emailError: !RegExp(
         /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/g
       ).test(this.state.email),
@@ -78,6 +86,7 @@ class FeedbackForm extends Component {
       height,
       weight,
       email,
+      phone,
       qualificationLink,
       image
     } = this.state;
@@ -90,6 +99,7 @@ class FeedbackForm extends Component {
           height,
           weight,
           email,
+          phone,
           qualificationLink,
           image
         })
@@ -238,6 +248,43 @@ class FeedbackForm extends Component {
               </div>
               <div className="row input-pair">
                 <div className="col col-lg-3 col-12">
+                  <div className="title">Номер тел.</div>
+                </div>
+                <div className="col col-lg-9 col-12">
+                  <div
+                    className={`input-wrapper ${
+                      this.state.phoneError ? 'errored' : ''
+                    }`}
+                  >
+                    {/* <input
+                      type="email"
+                      onChange={e =>
+                        this.onInputChange(
+                          e,
+                          'email',
+                          /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/g
+                        )
+                      }
+                      value={this.state.email}
+                    /> */}
+                    <PhoneInput
+                      placeholder=""
+                      labels={ru}
+                      value={this.state.phone}
+                      onChange={phone =>
+                        this.setState({
+                          phone,
+                          phoneError: !RegExp(
+                            /(([+][(]?[0-9]{1,3}[)]?)|([(]?[0-9]{4}[)]?))\s*[)]?[-\s\.]?[(]?[0-9]{1,3}[)]?([-\s\.]?[0-9]{3})([-\s\.]?[0-9]{3,4})/g
+                          ).test(phone.toString())
+                        })
+                      }
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="row input-pair">
+                <div className="col col-lg-3 col-12">
                   <div className="title">Квалификация</div>
                   <div className="subtitle">(Ссылка на видео)</div>
                 </div>
@@ -303,7 +350,18 @@ class FeedbackForm extends Component {
                     }
                   >
                     Я ознaкомлен с{' '}
-                    <Link to="/techniques">правилами выполнения</Link> элементов
+                    <a
+                      href=""
+                      role="presentation"
+                      onClick={e => {
+                        e.preventDefault();
+                        this.setState({
+                          areRulesOpen: true
+                        });
+                      }}
+                    >
+                      Правилами
+                    </a>
                   </div>
                 </h4>
               </div>
@@ -316,6 +374,11 @@ class FeedbackForm extends Component {
               </a>
             </div>
           </div>
+
+          <RulesModal
+            isOpen={this.state.areRulesOpen}
+            onClose={() => this.setState({ areRulesOpen: false })}
+          />
         </div>
       );
     }
@@ -324,7 +387,7 @@ class FeedbackForm extends Component {
 
 FeedbackForm.propTypes = {
   onCloseModal: PropTypes.func,
-  onSaveNote: PropTypes.func
+  openRules: PropTypes.func
 };
 
 export default FeedbackForm;

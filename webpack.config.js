@@ -47,7 +47,7 @@ module.exports = {
         test: /\.(png|jpg|svg)$/,
         loader: 'url-loader',
         exclude: /node_modules/
-      }
+      },
     ]
   },
   plugins: [
@@ -103,7 +103,8 @@ module.exports = {
     },
     runtimeChunk: true
   },
-  devtool: 'nosources-source-map',
+  // devtool: 'nosources-source-map',
+  devtool: 'eval',
   devServer: {
     contentBase: path.resolve(__dirname, 'public'),
     historyApiFallback: true,

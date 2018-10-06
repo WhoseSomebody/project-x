@@ -16,9 +16,9 @@ const server = express();
 
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
+server.use(cors());
 server.use('/public', express.static(process.cwd() + '/public'));
 // server.use(express.static(__dirname + '/public'));
-server.use(cors());
 server.use(morgan('combined'));
 server.use('/api', notesRouter(PORT));
 

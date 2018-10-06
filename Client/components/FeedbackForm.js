@@ -58,7 +58,7 @@ class FeedbackForm extends Component {
       weightError: !RegExp(/^\d+$/g).test(this.state.weight),
       phoneError: !RegExp(
         /(([+][(]?[0-9]{1,3}[)]?)|([(]?[0-9]{4}[)]?))\s*[)]?[-\s\.]?[(]?[0-9]{1,3}[)]?([-\s\.]?[0-9]{3})([-\s\.]?[0-9]{3,4})/g
-      ).test(this.state.weight),
+      ).test(this.state.phone),
       emailError: !RegExp(
         /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/g
       ).test(this.state.email),
@@ -276,7 +276,7 @@ class FeedbackForm extends Component {
                           phone,
                           phoneError: !RegExp(
                             /(([+][(]?[0-9]{1,3}[)]?)|([(]?[0-9]{4}[)]?))\s*[)]?[-\s\.]?[(]?[0-9]{1,3}[)]?([-\s\.]?[0-9]{3})([-\s\.]?[0-9]{3,4})/g
-                          ).test(phone.toString())
+                          ).test(phone)
                         })
                       }
                     />

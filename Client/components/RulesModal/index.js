@@ -27,7 +27,7 @@ export default class RulesModal extends React.Component {
           transition: 'width 0.1s linear'
         }}
       >
-        <Document file="https://cors-anywhere.herokuapp.com/https://manning-content.s3.amazonaws.com/download/5/54dea42-e46e-44c7-a930-d4c86a2c2ca3/CORS_ch03.pdf" />
+        <Document file="https://project-x-backend.herokuapp.com/public/Polozhenie_RDWC_2018_Moscow.pdf" />
       </ReactModal>
     );
   }

@@ -16,6 +16,7 @@ class ParticipantManager {
       height,
       weight,
       email,
+      phone,
       qualificationLink,
       photoBase64,
       // image
@@ -36,6 +37,7 @@ class ParticipantManager {
           height,
           weight,
           email,
+          phone,
           qualificationLink,
           imageUrl
         })

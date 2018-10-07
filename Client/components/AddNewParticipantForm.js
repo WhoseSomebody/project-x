@@ -1,5 +1,8 @@
+/* eslint-disable no-useless-escape*/
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ru from 'react-phone-number-input/locale/ru';
+import PhoneInput from 'react-phone-number-input';
 import AvatarUpdater from '../components/AvatarUpdater';
 import participantsService from '../services/participants-service';
 
@@ -13,6 +16,7 @@ class AddNewParticipantForm extends Component {
       height: '',
       weight: '',
       email: '',
+      phone: '',
       qualificationLink: '',
       image: null,
       sentSuccess: false,
@@ -49,6 +53,9 @@ class AddNewParticipantForm extends Component {
       ageError: !RegExp(/^\d+$/g).test(this.state.age),
       heightError: !RegExp(/^\d+$/g).test(this.state.height),
       weightError: !RegExp(/^\d+$/g).test(this.state.weight),
+      phoneError: !RegExp(
+        /(([+][(]?[0-9]{1,3}[)]?)|([(]?[0-9]{4}[)]?))\s*[)]?[-\s\.]?[(]?[0-9]{1,3}[)]?([-\s\.]?[0-9]{3})([-\s\.]?[0-9]{3,4})/g
+      ).test(this.state.phone),
       emailError: !RegExp(
         /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/g
       ).test(this.state.email),
@@ -73,6 +80,7 @@ class AddNewParticipantForm extends Component {
       height,
       weight,
       email,
+      phone,
       qualificationLink,
       image
     } = this.state;
@@ -85,6 +93,7 @@ class AddNewParticipantForm extends Component {
           height,
           weight,
           email,
+          phone,
           qualificationLink,
           image
         })
@@ -216,6 +225,32 @@ class AddNewParticipantForm extends Component {
                       )
                     }
                     value={this.state.email}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="row input-pair">
+              <div className="col col-lg-3 col-12">
+                <div className="title">Номер тел.</div>
+              </div>
+              <div className="col col-lg-9 col-12">
+                <div
+                  className={`input-wrapper ${
+                    this.state.phoneError ? 'errored' : ''
+                  }`}
+                >
+                  <PhoneInput
+                    placeholder=""
+                    labels={ru}
+                    value={this.state.phone}
+                    onChange={phone =>
+                      this.setState({
+                        phone,
+                        phoneError: !RegExp(
+                          /(([+][(]?[0-9]{1,3}[)]?)|([(]?[0-9]{4}[)]?))\s*[)]?[-\s\.]?[(]?[0-9]{1,3}[)]?([-\s\.]?[0-9]{3})([-\s\.]?[0-9]{3,4})/g
+                        ).test(phone)
+                      })
+                    }
                   />
                 </div>
               </div>

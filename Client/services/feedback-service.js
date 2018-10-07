@@ -15,6 +15,7 @@ const sendFeedback = ({
   height,
   weight,
   email,
+  phone,
   qualificationLink,
   image
 }) => {
@@ -27,6 +28,7 @@ const sendFeedback = ({
     formData.append('height', height);
     formData.append('weight', weight);
     formData.append('email', email);
+    formData.append('phone', phone);
     formData.append('qualificationLink', qualificationLink);
     formData.append('photo', image, `${name} ${surname} фото`);
     const config = {

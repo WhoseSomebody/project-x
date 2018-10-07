@@ -256,17 +256,6 @@ class FeedbackForm extends Component {
                       this.state.phoneError ? 'errored' : ''
                     }`}
                   >
-                    {/* <input
-                      type="email"
-                      onChange={e =>
-                        this.onInputChange(
-                          e,
-                          'email',
-                          /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/g
-                        )
-                      }
-                      value={this.state.email}
-                    /> */}
                     <PhoneInput
                       placeholder=""
                       labels={ru}
@@ -350,7 +339,7 @@ class FeedbackForm extends Component {
                     }
                   >
                     Я ознaкомлен с{' '}
-                    <a
+                    {/* <a
                       href=""
                       role="presentation"
                       onClick={e => {
@@ -359,6 +348,13 @@ class FeedbackForm extends Component {
                           areRulesOpen: true
                         });
                       }}
+                    >
+                      Правилами
+                    </a> */}
+                    <a
+                      href="https://project-x-backend.herokuapp.com/public/Polozhenie_RDWC_2018_Moscow.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
                     >
                       Правилами
                     </a>

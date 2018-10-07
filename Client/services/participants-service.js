@@ -48,6 +48,7 @@ const addNew = ({
   height,
   weight,
   email,
+  phone,
   qualificationLink,
   image
 }) => {
@@ -60,6 +61,7 @@ const addNew = ({
     formData.append('height', height);
     formData.append('weight', weight);
     formData.append('email', email);
+    formData.append('phone', phone);
     formData.append('qualificationLink', qualificationLink);
     formData.append('photo', image, `${uuid.v1()}.jpg`);
 

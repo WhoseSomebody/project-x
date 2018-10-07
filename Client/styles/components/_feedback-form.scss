@@ -175,6 +175,7 @@
   box-sizing: content-box;
   svg {
     width: 100%;
+    fill: #c2c2c2;
   }
 }
 
@@ -282,7 +283,7 @@
 
 .react-phone-number-input__country-select:focus
   + .react-phone-number-input__country-select-arrow {
-  color: #03b2cb;
+  color: #fff;
 }
 
 /* Styling phone number input */
@@ -300,7 +301,7 @@
 }
 
 .react-phone-number-input__input:focus {
-  border-color: #03b2cb;
+  border-color: #fff;
 }
 
 .react-phone-number-input__input--disabled {

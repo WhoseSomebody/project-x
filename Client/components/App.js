@@ -8,6 +8,7 @@ import TechniquesPage from './TechniquesPage';
 import LoginPage from './LoginPage';
 import AdminPage from './AdminPage';
 import Header from './Header';
+import Footer from './Footer';
 import MobileHeader from './MobileHeader';
 
 const isPathNotFound = path => {
@@ -24,7 +25,6 @@ const isPathNotFound = path => {
   }
 };
 
-
 export default class App extends Component {
   constructor() {
     super();
@@ -32,7 +32,7 @@ export default class App extends Component {
     this.state = {
       title: 'Dream Workout Championship',
       description:
-        'Главный турнир по воркауту в СНГ, цель которого дать возможность каждому выйти на поле битвы и доказать что он номер один в своем деле!'
+        'Главный турнир по воркауту в СНГ, цель которого дать возможность каждому выйти на поле битвы и доказать что он номер один в своем деле!',
     };
   }
 
@@ -46,6 +46,7 @@ export default class App extends Component {
               <MobileHeader {...props} />
               <Header {...props} />
               <Component {...props} />
+              <Footer />
               <Popup />
             </div>
           );
@@ -109,6 +110,6 @@ Popup.registerPlugin('popover', function(content, target) {
         btnOffsetLeft + target.offsetWidth / 2 - box.offsetWidth / 2 + 'px';
       box.style.margin = 0;
       box.style.opacity = 1;
-    }
+    },
   });
 });

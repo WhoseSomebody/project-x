@@ -388,3 +388,54 @@ a {
     width: 100%;
   }
 }
+
+.footer {
+  color: #878d92;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 29px;
+  min-height: 60px;
+  background-color: #e9eaed;
+  a {
+    color: #878d92;
+  }
+  .instagram {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    .icon {
+      background-image: url('../assets/inst@2x.png');
+      background-position: 0 -100%;
+      background-size: 100%;
+      background-repeat: no-repeat;
+      width: 27px;
+      height: 27px;
+      margin-right: 20px;
+      display: inline-block;
+    }
+  }
+  .email {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+    a {
+      padding: 0 5px;
+    }
+    .icon {
+      background-image: url('../assets/mail@2x.png');
+      background-position: center;
+      background-size: 100%;
+      background-repeat: no-repeat;
+      width: 33px;
+      min-width: 33px;
+      height: 27px;
+      margin-right: 20px;
+      display: inline-block;
+    }
+  }
+}
+.inversed .footer {
+  background-color: #262626;
+}

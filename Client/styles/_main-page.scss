@@ -332,6 +332,12 @@
       position: absolute;
       top: -70%;
     }
+    .feedback-form {
+      margin-bottom: 60px;
+      .button.block {
+        margin-bottom: 40px !important;
+      }
+    }
   }
 }
 
@@ -395,6 +401,9 @@
   }
   .header {
     display: block;
+  }
+  .footer {
+    padding-bottom: 50px;
   }
 }
 
@@ -549,6 +558,7 @@
     }
   }
   .footer {
+    padding-bottom: 30px;
     font-size: 16px;
     line-height: 18px;
   }

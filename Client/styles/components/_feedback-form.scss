@@ -72,9 +72,9 @@
   }
   .checkboxWrapper {
     position: relative;
-    height: 40px;
+    min-height: 40px;
     display: flex;
-    margin-bottom: 70px;
+    margin-bottom: 40px;
     z-index: 1;
     h4 {
       margin-left: 10px;

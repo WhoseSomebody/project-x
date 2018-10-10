@@ -356,7 +356,7 @@ class FeedbackForm extends Component {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      Правилами
+                      Положением Чемпионата
                     </a>
                   </div>
                 </h4>

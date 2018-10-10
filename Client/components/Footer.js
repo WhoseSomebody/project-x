@@ -7,21 +7,24 @@ const Footer = () => {
         <div className="row">
           <div className="col col-12 col-lg-5">
             <a
-              href="https://www.instagram.com/roadtothedream"
+              href="https://www.instagram.com/rdwcofficial/"
               target="_blank"
               rel="noopener noreferrer"
               className="instagram"
             >
-              <div className="icon" /> Instagram соревнований
+              <div className="icon" />
+              <span>Instagram соревнований</span>
             </a>
           </div>
           <div className="col col-12 col-lg-7">
             <div className="email">
               <div className="icon" />
-              Поддержка:{' '}
-              <a href="mailto:rdchampionship@gmail.com">
-                rdchampionship@gmail.com
-              </a>
+              <span>
+                Поддержка:{' '}
+                <a href="mailto:rdwchampionship@gmail.com">
+                  rdwchampionship@gmail.com
+                </a>
+              </span>
             </div>
           </div>
         </div>

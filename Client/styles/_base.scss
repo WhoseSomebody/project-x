@@ -406,10 +406,10 @@ a {
     padding: 10px 0;
     .icon {
       background-image: url('../assets/inst@2x.png');
-      background-position: 0 -100%;
-      background-size: 100%;
+      background-position: center;
+      background-size: contain;
       background-repeat: no-repeat;
-      width: 27px;
+      width: 33px;
       height: 27px;
       margin-right: 20px;
       display: inline-block;
@@ -420,9 +420,9 @@ a {
     justify-content: center;
     align-items: center;
     padding: 10px 0;
-    a {
-      padding: 0 5px;
-    }
+    // a {
+    //   padding: 0 5px;
+    // }
     .icon {
       background-image: url('../assets/mail@2x.png');
       background-position: center;

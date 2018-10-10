@@ -432,6 +432,16 @@
       }
     }
   }
+
+  .footer {
+    font-size: 20px;
+    .instagram {
+      justify-content: flex-start !important;
+    }
+    .email {
+      justify-content: flex-start !important;
+    }
+  }
 }
 @media (min-width: 693px) {
   .bm-burger-button {
@@ -536,6 +546,9 @@
     .form-wrapper {
       margin: 70px auto 40px auto;
     }
+  }
+  .footer {
+    font-size: 16px;
   }
 }
 

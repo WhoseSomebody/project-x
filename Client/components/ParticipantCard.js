@@ -20,11 +20,16 @@ export class ParticipantCard extends Component {
             Email:{' '}
             <a href={`mailto:${participant.email}`}>{participant.email}</a>
           </div>
+          <div>Номер телефона: {participant.phone}</div>
           <div>
-            Номер телефона:{' '}{participant.phone}
+            Квалификация:{' '}
+            <a href={participant.qualificationLink}>
+              {participant.qualificationLink}
+            </a>
           </div>
           <div>
-            Квалификация: <a href={participant.qualificationLink}>{participant.qualificationLink}</a>
+            Instagram:{' '}
+            <a href={participant.instagramLink}>{participant.instagramLink}</a>
           </div>
         </div>,
         this.details
@@ -56,8 +61,8 @@ export class ParticipantCard extends Component {
             {participant.name} {participant.surname}
           </h3>
           <div className="card-details">
-            {participant.age} {text(participant.age)} / {participant.weight} кг /{' '}
-            {participant.height} см
+            {participant.age} {text(participant.age)} / {participant.weight} кг
+            / {participant.height} см
           </div>
         </div>
       </div>
@@ -86,7 +91,7 @@ function text(age) {
 ParticipantCard.propTypes = {
   participant: PropTypes.object,
   onRemove: PropTypes.func,
-  showDetails: PropTypes.bool
+  showDetails: PropTypes.bool,
 };
 
 export default ParticipantCard;

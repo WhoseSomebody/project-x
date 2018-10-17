@@ -28,11 +28,22 @@ const Header = props => {
           <Link to="/techniques">Техника выполнения</Link>
         </li>
       </ul>
+      <div className="d-sm-none d-md-block instawrapper">
+        <a
+          href="https://www.instagram.com/rdwcofficial/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="instagram"
+        >
+          <div className="icon" />
+          <span>Instagram</span>
+        </a>
+      </div>
     </div>
   );
 };
 
 Header.propTypes = {
-  match: PropTypes.object
+  match: PropTypes.object,
 };
 export default Header;

@@ -20,6 +20,7 @@ class FeedbackForm extends Component {
       email: '',
       phone: '',
       qualificationLink: '',
+      instagramLink: '',
       image: null,
       sentSuccess: Cookies.get('emailSent'),
       nameError: false,
@@ -29,8 +30,9 @@ class FeedbackForm extends Component {
       heightError: false,
       weightError: false,
       qualificationLinkError: false,
+      instagramLinkError: false,
       imageError: false,
-      areRulesOpen: false
+      areRulesOpen: false,
     };
     Cookies.remove('emailSent'), (this.state = { ...this.initialState });
   }
@@ -38,14 +40,14 @@ class FeedbackForm extends Component {
   onInputChange = (e, name, regexp) => {
     this.setState({
       [name]: e.target.value,
-      [`${name}Error`]: !RegExp(regexp).test(e.target.value.toString())
+      [`${name}Error`]: !RegExp(regexp).test(e.target.value.toString()),
     });
   };
 
   receiveImage = file => {
     console.log(file);
     this.setState({
-      image: file
+      image: file,
     });
   };
 
@@ -63,10 +65,13 @@ class FeedbackForm extends Component {
         /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/g
       ).test(this.state.email),
       qualificationLinkError: !RegExp(
-        /(http[s]?:\/\/)?[^\s(["<,>]*\.[^\s[",><]*/g
+        /(https:\/\/www\.)?youtube\.com\/watch\?v=[^\s[",><]{11}/g
       ).test(this.state.qualificationLink),
+      instagramLinkError: !RegExp(
+        /(https:\/\/www\.)?instagram\.com\/[^\s[",><]+/g
+      ).test(this.state.instagramLink),
       imageError: !this.state.image,
-      acceptRulesError: !this.state.acceptRules
+      acceptRulesError: !this.state.acceptRules,
     };
     this.setState({ ...errors });
     let failed = false;
@@ -88,7 +93,8 @@ class FeedbackForm extends Component {
       email,
       phone,
       qualificationLink,
-      image
+      instagramLink,
+      image,
     } = this.state;
     if (this.validateForm()) {
       feedbackService
@@ -101,12 +107,13 @@ class FeedbackForm extends Component {
           email,
           phone,
           qualificationLink,
-          image
+          instagramLink,
+          image,
         })
         .then(() => {
           this.setState({
             ...this.initialState,
-            sentSuccess: true
+            sentSuccess: true,
           });
           Cookies.set('emailSent', true, { expires: 1 });
         })
@@ -265,7 +272,7 @@ class FeedbackForm extends Component {
                           phone,
                           phoneError: !RegExp(
                             /(([+][(]?[0-9]{1,3}[)]?)|([(]?[0-9]{4}[)]?))\s*[)]?[-\s\.]?[(]?[0-9]{1,3}[)]?([-\s\.]?[0-9]{3})([-\s\.]?[0-9]{3,4})/g
-                          ).test(phone)
+                          ).test(phone),
                         })
                       }
                     />
@@ -275,7 +282,7 @@ class FeedbackForm extends Component {
               <div className="row input-pair">
                 <div className="col col-lg-3 col-12">
                   <div className="title">Квалификация</div>
-                  <div className="subtitle">(Ссылка на видео)</div>
+                  <div className="subtitle">(Ссылка на YouTube видео)</div>
                 </div>
                 <div className="col col-lg-9 col-12">
                   <div
@@ -289,10 +296,37 @@ class FeedbackForm extends Component {
                         this.onInputChange(
                           e,
                           'qualificationLink',
-                          /(http[s]?:\/\/)?[^\s(["<,>]*\.[^\s[",><]*/g
+                          /(https:\/\/www\.)?youtube\.com\/watch\?v=[^\s[",><]{11}/g
                         )
                       }
                       value={this.state.qualificationLink}
+                      placeholder="https://www.youtube.com/watch?v=..."
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className="row input-pair">
+                <div className="col col-lg-3 col-12">
+                  <div className="title">Instagram</div>
+                  <div className="subtitle">(Ссылка на твой профиль)</div>
+                </div>
+                <div className="col col-lg-9 col-12">
+                  <div
+                    className={`input-wrapper ${
+                      this.state.instagramLinkError ? 'errored' : ''
+                    }`}
+                  >
+                    <input
+                      type="link"
+                      onChange={e =>
+                        this.onInputChange(
+                          e,
+                          'instagramLink',
+                          /(https:\/\/www\.)?instagram\.com\/[^\s[",><]+/g
+                        )
+                      }
+                      value={this.state.instagramLink}
+                      placeholder="https://www.instagram.com/..."
                     />
                   </div>
                 </div>
@@ -317,7 +351,7 @@ class FeedbackForm extends Component {
                     onChange={e =>
                       this.setState({
                         acceptRules: e.target.checked,
-                        acceptRulesError: null
+                        acceptRulesError: null,
                       })
                     }
                   />
@@ -334,7 +368,7 @@ class FeedbackForm extends Component {
                     onClick={() =>
                       this.setState({
                         acceptRules: !this.state.acceptRules,
-                        acceptRulesError: null
+                        acceptRulesError: null,
                       })
                     }
                   >
@@ -383,7 +417,7 @@ class FeedbackForm extends Component {
 
 FeedbackForm.propTypes = {
   onCloseModal: PropTypes.func,
-  openRules: PropTypes.func
+  openRules: PropTypes.func,
 };
 
 export default FeedbackForm;

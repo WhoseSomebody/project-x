@@ -5,7 +5,7 @@ const Footer = () => {
     <div className="footer">
       <div className="container">
         <div className="row">
-          <div className="col col-12 col-lg-5">
+          <div className="d-md-none col col-12 col-lg-5">
             <a
               href="https://www.instagram.com/rdwcofficial/"
               target="_blank"
@@ -16,7 +16,7 @@ const Footer = () => {
               <span>Instagram соревнований</span>
             </a>
           </div>
-          <div className="col col-12 col-lg-7">
+          <div className="col col-12">
             <div className="email">
               <div className="icon" />
               <span>

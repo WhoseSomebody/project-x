@@ -1,7 +1,7 @@
 'use strict';
 const serverConfig = require('../serverConfig.js');
 const nodemailer = require('nodemailer');
-const fs = require('fs');
+// const fs = require('fs');
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -59,6 +59,10 @@ class EmailManager {
         <tr>
           <td>Квалификация:</td>
           <td>${fields.qualificationLink}</td>
+        </tr>
+        <tr>
+          <td>Instagram:</td>
+          <td>${fields.instagramLink}</td>
         </tr>
       </table>`, // html body
       attachments: [

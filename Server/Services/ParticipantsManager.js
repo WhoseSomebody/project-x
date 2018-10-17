@@ -18,6 +18,7 @@ class ParticipantManager {
       email,
       phone,
       qualificationLink,
+      instagramLink,
       photoBase64,
       // image
     } = fields;
@@ -39,6 +40,7 @@ class ParticipantManager {
           email,
           phone,
           qualificationLink,
+          instagramLink,
           imageUrl
         })
         .then(result => resolve(result.id))

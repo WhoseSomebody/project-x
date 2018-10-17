@@ -13,7 +13,9 @@ export class ParticipantsList extends Component {
       pagesCount,
       onRemove,
       showDetails,
-      loading
+      loading,
+      hoverable,
+      openVideo,
     } = this.props;
     return (
       <div className="listWrapper">
@@ -35,13 +37,16 @@ export class ParticipantsList extends Component {
                   participant={participant}
                   onRemove={onRemove}
                   showDetails={showDetails}
+                  hoverable={hoverable}
+                  openVideo={openVideo}
                 />
               </div>
             ))}
           {!loading &&
             (!participants || !participants.length) && (
               <div className="empty-message">
-                Принимаем ваши запросы на участие, стань первым участником чемпионата!
+                Принимаем ваши запросы на участие, стань первым участником
+                чемпионата!
               </div>
             )}
         </div>
@@ -73,8 +78,10 @@ ParticipantsList.propTypes = {
   handlePageClick: PropTypes.func,
   pagesCount: PropTypes.number,
   onRemove: PropTypes.func,
+  openVideo: PropTypes.func,
   showDetails: PropTypes.bool,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
+  hoverable: PropTypes.bool,
 };
 
 export default ParticipantsList;

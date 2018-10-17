@@ -12,12 +12,56 @@
     background: url('../assets/male-profile-pic.jpg');
     background-size: cover;
     background-position: center;
+    cursor: pointer;
     img {
       height: 100%;
       width: auto;
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
+    }
+    &:hover .socials {
+      position: absolute;
+      display: flex;
+      height: 100%;
+      width: 100%;
+      padding: 0 25px;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      background-color: rgba(60, 69, 79, 0.9);
+      .icon {
+        height: 35px;
+        width: 35px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+        margin: 6px auto;
+      }
+      .instagram {
+        .icon {
+          background-image: url('../assets/inst_partic.png');
+        }
+        &:hover .icon {
+          background-image: url('../assets/inst_partic_hover.png');
+        }
+      }
+      .youtube {
+        .icon {
+          background-image: url('../assets/tube_partic.png');
+        }
+        &:hover .icon {
+          background-image: url('../assets/tube_partic_hover.png');
+        }
+      }
+      .social-title {
+        font-family: 'Oswald', sans-serif;
+        font-size: 14px;
+        color: #c0c0c0;
+      }
+      & > *:hover .social-title {
+        color: #fff;
+      }
     }
   }
   &.with-details {

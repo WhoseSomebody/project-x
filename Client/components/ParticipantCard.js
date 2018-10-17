@@ -37,7 +37,13 @@ export class ParticipantCard extends Component {
   };
 
   render() {
-    const { participant, showDetails, onRemove } = this.props;
+    const {
+      participant,
+      showDetails,
+      onRemove,
+      hoverable,
+      openVideo,
+    } = this.props;
     return (
       <div
         className={`card-wrapper ${showDetails ? 'with-details' : ''}`}
@@ -55,6 +61,29 @@ export class ParticipantCard extends Component {
         )}
         <div onClick={this.showDetails} className="card-top">
           <img src={participant.imageUrl} alt="" />
+          {hoverable && (
+            <div className="socials">
+              <a
+                href={participant.instagramLink}
+                rel="noopener noreferrer"
+                target="_blank"
+                className="instagram"
+              >
+                <div className="icon" />
+                <div className="social-title">Instagram</div>
+              </a>
+              <a
+                // href={participant.qualificationLink}
+                // rel="noopener noreferrer"
+                // target="_blank"
+                onClick={() => openVideo(participant)}
+                className="youtube"
+              >
+                <div className="icon" />
+                <div className="social-title">YouTube</div>
+              </a>
+            </div>
+          )}
         </div>
         <div className="card-borrom">
           <h3 className="card-name">
@@ -91,7 +120,9 @@ function text(age) {
 ParticipantCard.propTypes = {
   participant: PropTypes.object,
   onRemove: PropTypes.func,
+  openVideo: PropTypes.func,
   showDetails: PropTypes.bool,
+  hoverable: PropTypes.bool,
 };
 
 export default ParticipantCard;

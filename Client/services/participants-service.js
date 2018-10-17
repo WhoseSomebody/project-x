@@ -50,7 +50,8 @@ const addNew = ({
   email,
   phone,
   qualificationLink,
-  image
+  instagramLink,
+  image,
 }) => {
   return new Promise((resolve, reject) => {
     const formData = new FormData();
@@ -63,12 +64,13 @@ const addNew = ({
     formData.append('email', email);
     formData.append('phone', phone);
     formData.append('qualificationLink', qualificationLink);
+    formData.append('instagramLink', instagramLink);
     formData.append('photo', image, `${uuid.v1()}.jpg`);
 
     const config = {
       headers: {
-        'content-type': 'multipart/form-data'
-      }
+        'content-type': 'multipart/form-data',
+      },
     };
 
     var reader = new FileReader();

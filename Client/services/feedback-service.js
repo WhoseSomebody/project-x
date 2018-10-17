@@ -17,6 +17,7 @@ const sendFeedback = ({
   email,
   phone,
   qualificationLink,
+  instagramLink,
   image
 }) => {
   return new Promise((resolve, reject) => {
@@ -30,6 +31,7 @@ const sendFeedback = ({
     formData.append('email', email);
     formData.append('phone', phone);
     formData.append('qualificationLink', qualificationLink);
+    formData.append('instagramLink', instagramLink);
     formData.append('photo', image, `${name} ${surname} фото`);
     const config = {
       headers: {

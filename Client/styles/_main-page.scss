@@ -342,6 +342,9 @@
 }
 
 @media (min-width: 993px) {
+  .header .instawrapper {
+    right: 10vw !important;
+  }
   .feedback-form {
     .title {
       text-align: right;

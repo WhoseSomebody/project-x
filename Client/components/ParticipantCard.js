@@ -5,7 +5,7 @@ import Popup from 'react-popup';
 export class ParticipantCard extends Component {
   showDetails = () => {
     const { participant, showDetails } = this.props;
-    if (showDetails)
+    if (showDetails) {
       Popup.plugins().popover(
         <div>
           <div>
@@ -34,6 +34,8 @@ export class ParticipantCard extends Component {
         </div>,
         this.details
       );
+      window.addEventListener('scroll', () => Popup.refreshPosition());
+    }
   };
 
   render() {

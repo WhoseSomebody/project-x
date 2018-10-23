@@ -5,7 +5,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 
 // app references
-const notesRouter = require('./routers/notes-router');
+const router = require('./routers/router');
 
 // initialization
 const PORT = process.env.PORT || 8000;
@@ -19,7 +19,7 @@ server.use(bodyParser.json());
 server.use('/photos', express.static(process.cwd() + '/photos'));
 server.use(cors());
 server.use(morgan('combined'));
-server.use('/api', notesRouter(PORT));
+server.use('/api', router(PORT));
 
 // start server
 

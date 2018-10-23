@@ -4,8 +4,8 @@ import Parallax from 'parallax-js';
 import Cookies from 'js-cookie';
 
 const CREDENTIALS = {
-  login: 'rdteam',
-  pwd: 'ProjectX2018'
+  login: process.env.LOGIN || 'rdteam',
+  pwd: process.env.PASSWORD || 'ProjectX2018',
 };
 
 export class LoginPage extends Component {
@@ -13,11 +13,13 @@ export class LoginPage extends Component {
     super(props);
     this.state = {
       login: '',
-      password: ''
+      password: '',
     };
   }
 
   componentDidMount() {
+    console.log(process.env.LOGIN);
+    console.log(process.env.PASSWORD);
     const scene = document.getElementById('scene');
     const parallaxInstance = new Parallax(scene); // eslint-disable-line
   }
@@ -33,7 +35,7 @@ export class LoginPage extends Component {
     if (this.validateCredentials()) {
       this.setState(
         {
-          loginError: false
+          loginError: false,
         },
         () => {
           Cookies.set('isLoggedIn', true, { expires: 1 });
@@ -42,7 +44,7 @@ export class LoginPage extends Component {
       );
     } else {
       this.setState({
-        loginError: true
+        loginError: true,
       });
     }
   };
@@ -117,7 +119,7 @@ export class LoginPage extends Component {
   }
 }
 LoginPage.propTypes = {
-  history: PropTypes.object.isRequired
+  history: PropTypes.object.isRequired,
 };
 
 export default LoginPage;

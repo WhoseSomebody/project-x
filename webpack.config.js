@@ -71,7 +71,9 @@ module.exports = {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV: JSON.stringify('production')
+        NODE_ENV: JSON.stringify('production'),
+        LOGIN: JSON.stringify('rdteam'),
+        PASSWORD: JSON.stringify('ProjectX2018')
       }
     })
   ],

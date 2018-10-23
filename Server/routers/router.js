@@ -1,18 +1,13 @@
 'use strict';
 
-// package references
 const express = require('express');
 var formidable = require('formidable');
 
-// app references
 const EmailManager = require('../Services/EmailManager');
 const ParticipantsManager = require('../Services/ParticipantsManager');
 
-// initialization
 const emailManager = new EmailManager();
 const particiantsManager = new ParticipantsManager();
-
-// build router
 
 const notesRouter = () => {
   const router = express.Router();

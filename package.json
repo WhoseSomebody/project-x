@@ -1,5 +1,5 @@
 {
-  "name": "noteworx-react-mongodb",
+  "name": "rdwc.ru",
   "version": "1.0.0",
   "description": "A basic note application that uses React frontend to capture and manage notes, an api written in ExpressJS, and mongodb to store notes",
   "scripts": {

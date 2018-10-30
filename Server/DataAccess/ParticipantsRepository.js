@@ -7,7 +7,7 @@ const collection = 'participants';
 
 const connect = () =>
   new DbConnection(
-    'mongodb://admin:ProjectX2018@ds151892.mlab.com:51892/projectx'
+    'mongodb://admin:ProjectX2018@ds145893-a0.mlab.com:45893,ds145893-a1.mlab.com:45893/rdwc?replicaSet=rs-ds145893'
   );
 
 const filters = {

@@ -16,7 +16,7 @@ const filters = {
   },
   imageUrl: imageUrl => {
     return { imageUrl: { $regex: new RegExp(imageUrl, 'i') } };
-  }
+  },
 };
 
 class ParticipantsRepository {
@@ -78,7 +78,7 @@ class ParticipantsRepository {
         .open()
         .then(() => {
           connection.Db.collection(collection)
-            .find()
+            .find({ isDeleted: { $ne: true } })
             .sort({ updated_date: -1 })
             .skip(limit * page - limit)
             .limit(limit)
@@ -92,7 +92,7 @@ class ParticipantsRepository {
                     count,
                     pages: Math.ceil(count / limit),
                     page,
-                    limit
+                    limit,
                   });
                   connection.close();
                 })
@@ -118,7 +118,12 @@ class ParticipantsRepository {
         .open()
         .then(() => {
           connection.Db.collection(collection)
-            .findOneAndDelete(filters.id(id))
+            // .findOneAndDelete(filters.id(id))
+            .update(filters.id(id), {
+              $set: {
+                isDeleted: true,
+              },
+            })
             .then(() => {
               resolve();
               connection.close();
@@ -130,39 +135,6 @@ class ParticipantsRepository {
         })
         .catch(error => {
           resolve(error);
-          connection.close();
-        });
-    });
-  }
-
-  tagParticipant(id, tags) {
-    const connection = connect();
-
-    const update = {
-      $addToSet: {
-        tags: {
-          $each: tags
-        }
-      }
-    };
-
-    return new Promise((resolve, reject) => {
-      connection
-        .open()
-        .then(() => {
-          connection.Db.collection(collection)
-            .findOneAndUpdate(filters.id(id), update)
-            .then(() => {
-              resolve();
-              connection.close();
-            })
-            .catch(error => {
-              reject(error);
-              connection.close();
-            });
-        })
-        .catch(error => {
-          reject(error);
           connection.close();
         });
     });
@@ -181,8 +153,8 @@ class ParticipantsRepository {
                 title: participant.title,
                 content: participant.content,
                 tags: participant.tags,
-                updated_date: participant.updated_date
-              }
+                updated_date: participant.updated_date,
+              },
             })
             .then(() => {
               resolve();

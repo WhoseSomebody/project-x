@@ -85,7 +85,7 @@ class ParticipantsRepository {
             .toArray()
             .then(participants => {
               connection.Db.collection(collection)
-                .count()
+                .count({ isDeleted: { $ne: true } })
                 .then(count => {
                   resolve({
                     participants,
